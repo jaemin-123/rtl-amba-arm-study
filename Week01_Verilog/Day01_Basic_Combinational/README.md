@@ -47,9 +47,9 @@
 - Full Adder:
 
 ### 파형
-- `images/mux2_waveform.png`
-- `images/half_adder_waveform.png`
-- `images/full_adder_waveform.png`
+- `images/mux2_waveform.md`
+- `images/half_adder_waveform.md`
+- `images/full_adder_waveform.md`
 
 ## 5. 에러 및 해결
 - 발생한 문제:
