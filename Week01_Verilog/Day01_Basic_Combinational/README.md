@@ -5,8 +5,8 @@
 - [x] Input / Output / Wire 개념 이해
 - [x] 2:1 MUX 설계 및 검증
 - [x] Half Adder 설계 및 검증
-- [ ] Full Adder 설계 및 검증
-- [ ] Vivado Behavioral Simulation으로 동작 확인
+- [x] Full Adder 설계 및 검증
+- [x] Vivado Behavioral Simulation으로 동작 확인
 
 ## 2. 공부 자료
 - **강의:** [KOCW Verilog HDL 및 Vivado 실습](http://www.kocw.net/home/search/kemView.do?kemId=1428200)
@@ -36,9 +36,9 @@
 ## 4. 검증 결과
 
 ### 테스트 항목
-- [ ] MUX2 전체 입력 조합 검증
-- [ ] Half Adder 전체 입력 조합 검증
-- [ ] Full Adder 전체 입력 조합 검증
+- [x] MUX2 전체 입력 조합 검증
+- [x] Half Adder 전체 입력 조합 검증
+- [x] Full Adder 전체 입력 조합 검증
 
 ### 시뮬레이션 결과
 - `images/mux2_waveform.md`
