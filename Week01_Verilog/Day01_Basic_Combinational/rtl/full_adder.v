@@ -28,3 +28,15 @@ module full_adder_1 (a, b, cin, sum, cout);
     
     assign cout = w1 | w3;
 endmodule
+
+module full_adder_2 (a, b, cin, sum, cout);
+    input a, b, cin;
+    output sum, cout;
+    
+    reg sum, cout;
+    
+    always @(*) begin
+        sum = a ^ b ^ cin;
+        cout = (a & b) | (cin & (a ^ b));
+    end
+endmodule
