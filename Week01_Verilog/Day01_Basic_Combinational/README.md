@@ -77,3 +77,8 @@ endmodule
 조합논리 : 이벤트가 생겼을때 동작, always문 내부 순차 동작 ex) always @(sel or a or b) begin
 연속 할당(assign) : 우변의 변화가 생겼을 때 좌변에 값 할당 ex) assign cout = a & b;
 ```
+- reg, wire 사용
+```text
+reg : 값 저장하는 변수 ( always, inital 문 내부의 좌변에 오는 변수는 reg 타입 이여야 함 절차적 할당) Procedural assignment
+wire : 물리적 연결선 (assign 구문 연속 할당) Continuous assignment
+```
