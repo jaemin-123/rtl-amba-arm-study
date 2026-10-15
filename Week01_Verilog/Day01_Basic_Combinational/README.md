@@ -3,7 +3,7 @@
 ## 1. 학습 목표
 - [x] Verilog Module 구조 이해
 - [x] Input / Output / Wire 개념 이해
-- [ ] 2:1 MUX 설계 및 검증
+- [x] 2:1 MUX 설계 및 검증
 - [ ] Half Adder 설계 및 검증
 - [ ] Full Adder 설계 및 검증
 - [ ] Vivado Behavioral Simulation으로 동작 확인
