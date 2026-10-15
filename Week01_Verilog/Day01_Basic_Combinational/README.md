@@ -4,7 +4,7 @@
 - [x] Verilog Module 구조 이해
 - [x] Input / Output / Wire 개념 이해
 - [x] 2:1 MUX 설계 및 검증
-- [ ] Half Adder 설계 및 검증
+- [x] Half Adder 설계 및 검증
 - [ ] Full Adder 설계 및 검증
 - [ ] Vivado Behavioral Simulation으로 동작 확인
 
@@ -36,17 +36,11 @@
 ## 4. 검증 결과
 
 ### 테스트 항목
-- [ ] MUX2 전체 입력 조합 검증 (8개)
-- [ ] Half Adder 전체 입력 조합 검증 (4개)
-- [ ] Full Adder 전체 입력 조합 검증 (8개)
-- [ ] 예상 출력과 실제 출력 비교
+- [ ] MUX2 전체 입력 조합 검증
+- [ ] Half Adder 전체 입력 조합 검증
+- [ ] Full Adder 전체 입력 조합 검증
 
 ### 시뮬레이션 결과
-- MUX2:
-- Half Adder:
-- Full Adder:
-
-### 파형
 - `images/mux2_waveform.md`
 - `images/half_adder_waveform.md`
 - `images/full_adder_waveform.md`
