@@ -61,7 +61,7 @@
 - Module과 Port 선언 방식
 ```verilog
 module module_name (port_list);
-    port 선언 (비트 크기) 'ex) input [1:0] a, b;'
+    port 선언 (비트 크기) `ex) input [1:0] a, b;`
     reg 선언 (출력)
     wire 선언 (내부 선 연결)
     파라미터 선언
