@@ -1,12 +1,12 @@
 # Week 01 - Day 03: Verilog HDL 연산자
 
 ## 1. 학습 목표
-- [ ] Verilog 연산자의 종류와 연산자 우선순위 이해
-- [ ] 산술, 관계, 등가, 논리, 비트 연산자 이해
-- [ ] 축약(Reduction) 연산자의 동작 이해
-- [ ] 논리 Shift와 산술 Shift의 차이 이해
-- [ ] 결합 및 반복 연산자 이해
-- [ ] Vivado에서 연산자 관련 RTL 및 Testbench 작성
+- [x] Verilog 연산자의 종류와 연산자 우선순위 이해
+- [x] 산술, 관계, 등가, 논리, 비트 연산자 이해
+- [x] 축약(Reduction) 연산자의 동작 이해
+- [x] 논리 Shift와 산술 Shift의 차이 이해
+- [x] 결합 및 반복 연산자 이해
+- [x] Vivado에서 연산자 관련 RTL 및 Testbench 작성
 
 ## 2. 공부 자료
 - **강의:** [KOCW - Verilog HDL 및 Vivado 실습](http://www.kocw.net/home/search/kemView.do?kemId=1428200)
@@ -149,13 +149,12 @@ assign {carry, sum} = a + b;
 ## 5. 검증 결과
 
 ### 테스트 항목
-- [ ] Equality 연산자의 X/Z 비교 결과 확인
-- [ ] 비트 연산과 논리 연산 차이 확인
-- [ ] Reduction NAND 결과 비교
-- [ ] Signed / Unsigned Shift 비교
-- [ ] 덧셈 Carry Bit 정상 출력 확인
-- [ ] 예상 결과와 실제 시뮬레이션 결과 비교
-
+- [x] Equality 연산자의 X/Z 비교 결과 확인
+- [x] 비트 연산과 논리 연산 차이 확인
+- [x] Reduction NAND 결과 비교
+- [x] Signed / Unsigned Shift 비교
+- [x] 덧셈 Carry Bit 정상 출력 확인
+      
 ### 예상 결과 / 실제 결과
 
 | 테스트 | 예상 결과 | 실제 결과 |
