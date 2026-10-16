@@ -19,6 +19,7 @@
 ### 3.1 2:1 Multiplexer
 - 기능: sel 값에 따라 입력 A/B 중 하나 선택
 - 설계 방식: if문과 case문 비교
+- - 4:1 Multiplexer의 경우 rtl 합성시 if문이 path가 3부분으로 길어짐
 - RTL 파일: `rtl/mux2.v`
 
 ### 3.2 Half Adder
@@ -43,7 +44,7 @@
 ### 시뮬레이션 결과
 - <img width="1041" height="143" alt="image" src="https://github.com/user-attachments/assets/f1df9ef2-d470-430b-835a-0e4ce0c9551d" />
 - <img width="1022" height="144" alt="image" src="https://github.com/user-attachments/assets/4a278b67-75ac-4d1d-bbac-8db45667f9e6" />
-- `images/full_adder_waveform.md`
+- <img width="1023" height="169" alt="image" src="https://github.com/user-attachments/assets/2b96451d-d3e7-46c4-baa5-c43b8bf8ec43" />
 
 ## 5. 에러 및 해결
 - 발생한 문제:
