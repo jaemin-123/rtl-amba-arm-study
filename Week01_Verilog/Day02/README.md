@@ -1,12 +1,12 @@
 # Week 01 - Day 02: Verilog 자료형과 연산자
 
 ## 1. 학습 목표
-- [ ] Verilog의 4가지 논리값 이해
-- [ ] Net과 Variable 자료형의 차이 이해
+- [x] Verilog의 4가지 논리값 이해
+- [x] Net과 Variable 자료형의 차이 이해
 - [ ] wire, reg, tri, wand, wor의 특징 이해
-- [ ] Vector와 Array 선언 방식 이해
-- [ ] Parameter와 Parameter Overriding 이해
-- [ ] 강의 예제 RTL 작성 및 시뮬레이션
+- [x] Vector와 Array 선언 방식 이해
+- [x] Parameter와 Parameter Overriding 이해
+- [x] 강의 예제 RTL 작성 및 시뮬레이션
 
 ## 2. 공부 자료
 - **강의:** [KOCW - Verilog HDL 및 Vivado 실습](http://www.kocw.net/home/search/kemView.do?kemId=1428200)
@@ -89,21 +89,17 @@ endmodule
 ## 5. 검증 결과
 
 ### 테스트 항목
-- [ ] wire와 wand의 다중 Driver 동작 비교
-- [ ] D Flip-Flop의 Clock Edge 동작 확인
-- [ ] MUX 입력 선택 동작 확인
-- [ ] Parameter WIDTH=8 동작 확인
-- [ ] Parameter WIDTH=4 동작 확인
+- [x] wire와 wand의 다중 Driver 동작 비교
+- [x] D Flip-Flop의 Clock Edge 동작 확인
+- [x] Parameter WIDTH=8 동작 확인
+- [x] Parameter WIDTH=4 동작 확인
 
 ### 시뮬레이션 결과
-- wire / wand:
 - D Flip-Flop:
   <img width="1039" height="125" alt="image" src="https://github.com/user-attachments/assets/02781280-96ad-4a7a-b16c-74cd71564049" />
 
 - Parameter:
-
-### 파형 및 로그
-- 추후 첨부
+  <img width="1037" height="192" alt="image" src="https://github.com/user-attachments/assets/dd673047-8a71-44f8-afce-d39ca824f5c0" />
 
 ## 6. 에러 및 해결
 - **발생한 문제:**
