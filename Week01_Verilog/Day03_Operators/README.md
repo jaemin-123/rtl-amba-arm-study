@@ -179,15 +179,38 @@ assign {carry, sum} = a + b;
   <img width="1038" height="145" alt="image" src="https://github.com/user-attachments/assets/5e052ca3-78a0-4c02-acfe-6cddfed4a583" />
 
 ## 6. 에러 및 해결
-- **발생한 문제:**
-- **원인:**
-- **수정한 RTL 코드:**
-- **변경 전후 결과:**
+- **발생한 문제:** Reduction 연산자 Testbench에서 입력 `a`만 변경하여 Logical AND(`&&`)와 Bitwise AND(`&`)의 다양한 출력 결과를 확인하기 어려웠음
+- **원인:** `logic_result`와 `bit_result`는 `b`, `c`에 의해 결정되지만, 초기 Testbench에서는 두 신호를 고정하여 출력이 변하지 않았음
+- **수정한 TB 코드:** `a`뿐만 아니라 `b`, `c`도 변경하여 다양한 연산 결과를 검증
+
+```verilog
+initial begin
+    a = 4'h5; b = 4'b1010; c = 4'b1100;
+    #10 a = 4'ha; b = 4'b0000;
+    #10 a = 4'hc; b = 4'b1111;
+    #10 a = 4'h2; c = 4'b0000;
+    #10 a = 4'hf; c = 4'b1111;
+    #10 $finish;
+end
+```
+
+- **변경 전후 결과:** 기존에는 `logic_result`와 `bit_result`의 출력이 일정했지만, 수정 후 입력 조합에 따른 Logical AND와 Bitwise AND의 출력 변화를 확인할 수 있었음
 
 ## 7. 학습 내용 및 느낀 점
 - **새롭게 이해한 개념:**
+  - **Equality:** `==`, `!=`는 일반적인 값 비교이며, `===`, `!==`는 `X`, `Z`까지 포함하여 비교한다는 점
+  - **Reduction:** `&&`는 다중 비트 입력을 각각 참/거짓으로 판단하여 1bit 결과를 출력하지만, `&`는 비트별 AND 연산을 수행한다는 점. 또한 `~&`를 통해 벡터 전체에 대한 Reduction NAND 연산이 가능하다는 점
+  - **Shift:** `>>`는 왼쪽 빈자리를 0으로 채우지만, `>>>`는 입력의 Signed 여부에 따라 부호 확장이 달라진다는 점
+  - **Carry Bit:** `{carry, sum}`과 Concatenation 연산자를 활용하여 덧셈 결과의 Carry-out과 Sum을 분리할 수 있다는 점
+
 - **기존에 잘못 알고 있던 부분:**
+  - `&&`는 주로 1bit 신호나 비교 조건에만 사용한다고 생각했으나, 다중 비트 벡터도 논리적 참/거짓으로 평가할 수 있음을 이해함
+  - `>>>`는 항상 부호 확장을 수행한다고 생각할 수 있지만, Unsigned 입력에서는 `>>`와 동일하게 0으로 채워진다는 점을 확인함
+
 - **추가로 공부할 내용:**
+  - Equality 연산에서 `X`, `Z`가 포함된 경우의 비교 결과
+  - Signed/Unsigned 연산 및 비트 폭에 따른 연산 결과 차이
+  - Carry-out과 Signed Overflow의 차이 및 ALU Flag 구현 방법
 
 ## 8. 다음 학습에서 보완할 것
 - 조합논리회로의 다양한 모델링 방식
