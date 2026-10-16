@@ -7,7 +7,7 @@ module modXnor (y_out, a, b);
     wire [size-1:0] #delay  y_out= a ~^ b;
 endmodule
 
-** 기존 modXnor 수정
+// 기존 modXnor 수정
 module modXnor_0 #(
     parameter size  = 8,
     parameter delay = 15
@@ -40,7 +40,7 @@ module Param;
     ); 
 endmodule
 
-** 기존 Param 수정 후 tb 까지
+// 기존 Param 수정 후 tb 까지
 module Param_0;
     reg  [7:0] a1, b1;
     reg  [3:0] a2, b2;
