@@ -19,7 +19,7 @@
 ### 3.1 2:1 Multiplexer
 - 기능: sel 값에 따라 입력 A/B 중 하나 선택
 - 설계 방식: if문과 case문 비교
-- - 4:1 Multiplexer의 경우 rtl 합성시 if문이 path가 3부분으로 길어짐
+  - 4:1 Multiplexer의 경우 rtl 합성시 if문이 path가 3부분으로 길어짐
 - RTL 파일: `rtl/mux2.v`
 
 ### 3.2 Half Adder
