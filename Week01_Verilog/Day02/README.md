@@ -98,7 +98,8 @@ endmodule
 ### 시뮬레이션 결과
 - wire / wand:
 - D Flip-Flop:
-- MUX:
+  <img width="1039" height="125" alt="image" src="https://github.com/user-attachments/assets/02781280-96ad-4a7a-b16c-74cd71564049" />
+
 - Parameter:
 
 ### 파형 및 로그
