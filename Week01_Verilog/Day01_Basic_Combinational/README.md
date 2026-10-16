@@ -45,7 +45,7 @@
 - mux2
   <img width="1041" height="143" alt="image" src="https://github.com/user-attachments/assets/f1df9ef2-d470-430b-835a-0e4ce0c9551d" />
 - mux4
-  
+  <img width="1039" height="189" alt="image" src="https://github.com/user-attachments/assets/08ebfd62-267f-4789-b200-747472f0edb6" />
 - half_adder
   <img width="1022" height="144" alt="image" src="https://github.com/user-attachments/assets/4a278b67-75ac-4d1d-bbac-8db45667f9e6" />
 - full_adder
