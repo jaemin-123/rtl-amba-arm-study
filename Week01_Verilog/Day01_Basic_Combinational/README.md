@@ -42,7 +42,7 @@
 
 ### 시뮬레이션 결과
 - <img width="1041" height="143" alt="image" src="https://github.com/user-attachments/assets/f1df9ef2-d470-430b-835a-0e4ce0c9551d" />
-- `images/half_adder_waveform.md`
+- <img width="1022" height="144" alt="image" src="https://github.com/user-attachments/assets/4a278b67-75ac-4d1d-bbac-8db45667f9e6" />
 - `images/full_adder_waveform.md`
 
 ## 5. 에러 및 해결
