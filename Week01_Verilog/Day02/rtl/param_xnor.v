@@ -53,7 +53,6 @@ module Param_0;
         .y_out(y1_out)
     );
 
-    // Parameter 변경
     modXnor_0 #(
         .size(4),
         .delay(5)
