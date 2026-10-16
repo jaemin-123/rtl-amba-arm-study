@@ -95,6 +95,9 @@ endmodule
 - [x] Parameter WIDTH=4 동작 확인
 
 ### 시뮬레이션 결과
+- Wand_ex:
+  <img width="1032" height="225" alt="image" src="https://github.com/user-attachments/assets/a3ffba60-4616-4292-a1bf-2cef9eb2043f" />
+  
 - D Flip-Flop:
   <img width="1039" height="125" alt="image" src="https://github.com/user-attachments/assets/02781280-96ad-4a7a-b16c-74cd71564049" />
 
