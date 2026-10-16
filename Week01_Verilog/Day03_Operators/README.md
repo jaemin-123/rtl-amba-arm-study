@@ -171,6 +171,8 @@ assign {carry, sum} = a + b;
   <img width="1038" height="145" alt="image" src="https://github.com/user-attachments/assets/5f5d9160-4002-4cba-a7be-9ccad42418ab" />
 
 - Reduction:
+  <img width="1037" height="217" alt="image" src="https://github.com/user-attachments/assets/b332e3d4-68ba-4038-99f2-8bdcd6ec6b97" />
+
 - Shift:
 - Carry Bit:
 
