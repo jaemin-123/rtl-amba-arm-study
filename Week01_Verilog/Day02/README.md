@@ -78,7 +78,7 @@ endmodule
 
 ### 4.2 D Flip-Flop과 MUX
 - **참고:** PDF 7페이지
-- **파일:** `rtl/dff.v`, `Day01_Basic_Combinational/rtl/mux2`
+- **파일:** `rtl/dff.v`, `Day01_Basic_Combinational/rtl/mux2.v`
 - **목표:** 순차회로와 조합회로에서 reg가 사용되는 방식 비교
 
 ### 4.3 Parameter Overriding
