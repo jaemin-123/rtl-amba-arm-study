@@ -115,6 +115,30 @@ endmodule
 - 기존에 잘못 알고 있던 부분:
 - 추가로 공부할 내용:
 
+## 6. 에러 및 해결
+- **발생한 문제:** DFF Testbench 작성 중 `forever`문 이후 입력 신호 `d`를 변경하는 코드가 정상적으로 실행되지 않는 구조
+- **원인:** `forever`는 무한 반복문이므로 동일한 `initial` 블록에서 `forever` 이후에 작성된 코드는 실행되지 않음
+- **수정한 TB 코드:** Clock 생성과 입력 Stimulus를 별도의 블록으로 분리
+
+```verilog
+always #5 clk = ~clk;
+
+initial begin
+    d = 0;
+    #12 d = 1;
+    #10 d = 0;
+    #10 d = 1;
+    #10 $finish;
+end
+```
+
+- **변경 전후 결과:** `forever`를 이용한 기존 TB 구조를 수정하여 Clock 생성과 입력 신호 변경이 독립적으로 실행되도록 구성
+
+## 7. 학습 내용 및 느낀 점
+- 새롭게 이해한 개념: `wire`는 여러 Driver가 서로 다른 논리값을 구동할 때 `X(Unknown)`가 발생할 수 있지만, `wand`는 여러 Driver의 출력을 AND 연산하여 최종 값을 결정한다는 것을 이해함
+- 기존에 잘못 알고 있던 부분: `always`문은 반드시 `@(*)`, `@(posedge clk)` 형태로 작성해야 한다고 생각했지만, `always #5`처럼 지연 제어문을 사용할 수도 있다는 것을 알게 됨. 또한 `forever`는 `always`와 달리 절차적 블록 내부에서 사용하는 무한 반복문임을 이해함
+- 추가로 공부할 내용: `wor`, `tri` 등 다른 Net 자료형의 특성과 Multi-driver 발생 시 신호 처리 방식
+
 ## 8. 다음 학습에서 보완할 것
 - Verilog 연산자와 연산 결과의 비트 폭
 - signed / unsigned 연산 차이
