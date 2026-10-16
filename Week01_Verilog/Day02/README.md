@@ -105,17 +105,6 @@ endmodule
   <img width="1037" height="192" alt="image" src="https://github.com/user-attachments/assets/dd673047-8a71-44f8-afce-d39ca824f5c0" />
 
 ## 6. 에러 및 해결
-- **발생한 문제:**
-- **원인:**
-- **수정한 RTL 코드:**
-- **변경 전후 결과:**
-
-## 7. 학습 내용 및 느낀 점
-- 새롭게 이해한 개념:
-- 기존에 잘못 알고 있던 부분:
-- 추가로 공부할 내용:
-
-## 6. 에러 및 해결
 - **발생한 문제:** DFF Testbench 작성 중 `forever`문 이후 입력 신호 `d`를 변경하는 코드가 정상적으로 실행되지 않는 구조
 - **원인:** `forever`는 무한 반복문이므로 동일한 `initial` 블록에서 `forever` 이후에 작성된 코드는 실행되지 않음
 - **수정한 TB 코드:** Clock 생성과 입력 Stimulus를 별도의 블록으로 분리
