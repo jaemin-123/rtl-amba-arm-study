@@ -177,6 +177,7 @@ assign {carry, sum} = a + b;
   <img width="1034" height="192" alt="image" src="https://github.com/user-attachments/assets/75627003-7e46-4bbf-906a-2aca0dad0418" />
 
 - Carry Bit:
+  <img width="1038" height="145" alt="image" src="https://github.com/user-attachments/assets/5e052ca3-78a0-4c02-acfe-6cddfed4a583" />
 
 ## 6. 에러 및 해결
 - **발생한 문제:**
