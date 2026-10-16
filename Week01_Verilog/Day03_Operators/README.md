@@ -168,6 +168,8 @@ assign {carry, sum} = a + b;
 
 ### 시뮬레이션 파형 및 로그
 - Equality:
+  <img width="1038" height="145" alt="image" src="https://github.com/user-attachments/assets/5f5d9160-4002-4cba-a7be-9ccad42418ab" />
+
 - Reduction:
 - Shift:
 - Carry Bit:
