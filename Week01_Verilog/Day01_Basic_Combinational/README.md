@@ -41,7 +41,7 @@
 - [x] Full Adder 전체 입력 조합 검증
 
 ### 시뮬레이션 결과
-- `images/mux2_waveform.md`
+- <img width="1041" height="143" alt="image" src="https://github.com/user-attachments/assets/f1df9ef2-d470-430b-835a-0e4ce0c9551d" />
 - `images/half_adder_waveform.md`
 - `images/full_adder_waveform.md`
 
