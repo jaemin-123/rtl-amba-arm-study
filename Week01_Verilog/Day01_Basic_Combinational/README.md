@@ -52,10 +52,10 @@
   <img width="1023" height="169" alt="image" src="https://github.com/user-attachments/assets/2b96451d-d3e7-46c4-baa5-c43b8bf8ec43" />
 
 ## 5. 에러 및 해결
-- 발생한 문제:
-- 원인:
-- 수정 내용:
-- 수정 전후 결과:
+- 발생한 문제: `always` 문을 사용하여 MUX를 구현했을 때 합성 오류 발생
+- 원인: `always` 블록 내부에서 값을 할당하는 출력 포트 `out`을 `reg` 자료형으로 선언하지 않음
+- 수정 내용: 자료형 선언 `reg [1:0] out;` 추가
+- 수정 전후 결과: 자료형 수정 후 합성 성공
 
 ## 6. 학습 내용 정리
 - Module과 Port 선언 방식
