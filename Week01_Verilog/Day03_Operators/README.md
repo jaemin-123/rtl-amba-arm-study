@@ -212,9 +212,9 @@ end
   - Signed/Unsigned 연산 및 비트 폭에 따른 연산 결과 차이
   - Carry-out과 Signed Overflow의 차이 및 ALU Flag 구현 방법
   - ```
-    - **Carry Flag (CF):** Unsigned 덧셈에서 최상위 비트 밖으로 Carry가 발생했는지 판단
-    - **Overflow Flag (OF):** Signed 덧셈에서 표현 가능한 수치 범위를 초과했는지 판단
-    - **차이점:** Carry는 비트 폭을 초과하는 자리올림을 기준으로, Overflow는 Signed 연산 결과의 부호 및 표현 범위를 기준으로 판단한다.
+    Carry Flag (CF): Unsigned 덧셈에서 최상위 비트 밖으로 Carry가 발생했는지 판단
+    Overflow Flag (OF): Signed 덧셈에서 표현 가능한 수치 범위를 초과했는지 판단
+    차이점: Carry는 비트 폭을 초과하는 자리올림을 기준으로, Overflow는 Signed 연산 결과의 부호 및 표현 범위를 기준으로 판단한다.
     ```
 
 ## 8. 다음 학습에서 보완할 것
