@@ -174,6 +174,8 @@ assign {carry, sum} = a + b;
   <img width="1037" height="217" alt="image" src="https://github.com/user-attachments/assets/b332e3d4-68ba-4038-99f2-8bdcd6ec6b97" />
 
 - Shift:
+  <img width="1034" height="192" alt="image" src="https://github.com/user-attachments/assets/75627003-7e46-4bbf-906a-2aca0dad0418" />
+
 - Carry Bit:
 
 ## 6. 에러 및 해결
