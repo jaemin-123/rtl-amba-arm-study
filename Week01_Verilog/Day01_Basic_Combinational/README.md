@@ -42,9 +42,14 @@
 - [x] Full Adder 전체 입력 조합 검증
 
 ### 시뮬레이션 결과
-- <img width="1041" height="143" alt="image" src="https://github.com/user-attachments/assets/f1df9ef2-d470-430b-835a-0e4ce0c9551d" />
-- <img width="1022" height="144" alt="image" src="https://github.com/user-attachments/assets/4a278b67-75ac-4d1d-bbac-8db45667f9e6" />
-- <img width="1023" height="169" alt="image" src="https://github.com/user-attachments/assets/2b96451d-d3e7-46c4-baa5-c43b8bf8ec43" />
+- mux2
+  <img width="1041" height="143" alt="image" src="https://github.com/user-attachments/assets/f1df9ef2-d470-430b-835a-0e4ce0c9551d" />
+- mux4
+  
+- half_adder
+  <img width="1022" height="144" alt="image" src="https://github.com/user-attachments/assets/4a278b67-75ac-4d1d-bbac-8db45667f9e6" />
+- full_adder
+  <img width="1023" height="169" alt="image" src="https://github.com/user-attachments/assets/2b96451d-d3e7-46c4-baa5-c43b8bf8ec43" />
 
 ## 5. 에러 및 해결
 - 발생한 문제:
