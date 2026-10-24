@@ -225,6 +225,8 @@ end
 
 ### 시뮬레이션 파형 및 로그
 - Full Adder:
+  <img width="1032" height="166" alt="image" src="https://github.com/user-attachments/assets/0b129093-a085-4f62-9657-0e2ff22b3813" />
+
 - 4-bit Adder:
 - MUX2:
 - Sensitivity List:
