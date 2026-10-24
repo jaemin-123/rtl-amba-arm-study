@@ -228,6 +228,8 @@ end
   <img width="1032" height="166" alt="image" src="https://github.com/user-attachments/assets/0b129093-a085-4f62-9657-0e2ff22b3813" />
 
 - 4-bit Adder:
+  <img width="1033" height="172" alt="image" src="https://github.com/user-attachments/assets/2d9f876c-a090-411f-ab5a-84be39078fc6" />
+
 - MUX2:
 - Sensitivity List:
 - Inertial Delay:
