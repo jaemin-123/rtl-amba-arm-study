@@ -1,6 +1,6 @@
 module tb_assignment_compare;
 
-    reg clk = 0;
+    reg clk;
     reg rst;
 
     wire a_blk, b_blk;
@@ -19,6 +19,9 @@ module tb_assignment_compare;
         .a(a_nblk),
         .b(b_nblk)
     );
+    
+    initial
+        clk = 0;
     
     always #5 clk = ~clk;
 
