@@ -20,9 +20,7 @@ module tb_assignment_compare;
         .b(b_nblk)
     );
     
-    initial
-        clk = 0;
-    
+    initial clk = 0;
     always #5 clk = ~clk;
 
     initial begin
