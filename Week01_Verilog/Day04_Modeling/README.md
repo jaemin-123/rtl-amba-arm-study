@@ -1,14 +1,14 @@
 # Week 01 - Day 04: Verilog 모델링과 할당문
 
 ## 1. 학습 목표
-- [ ] Gate Primitive를 이용한 게이트 수준 모델링 이해
-- [ ] buf, not 및 3상태 버퍼의 동작 이해
+- [x] Gate Primitive를 이용한 게이트 수준 모델링 이해
+- [x] buf, not 및 3상태 버퍼의 동작 이해
 - [ ] Gate Delay, Net Delay, Inertial Delay 이해
-- [ ] 연속 할당문(`assign`)과 절차형 할당문의 차이 이해
-- [ ] `always`와 `initial` 구문의 동작 이해
+- [x] 연속 할당문(`assign`)과 절차형 할당문의 차이 이해
+- [x] `always`와 `initial` 구문의 동작 이해
 - [ ] Sensitivity List의 역할 이해
-- [ ] Blocking(`=`)과 Nonblocking(`<=`) 할당문의 차이 이해
-- [ ] RTL 및 Testbench 작성 후 시뮬레이션 검증
+- [x] Blocking(`=`)과 Nonblocking(`<=`) 할당문의 차이 이해
+- [x] RTL 및 Testbench 작성 후 시뮬레이션 검증
 
 ## 2. 공부 자료
 - **강의:** [KOCW - Verilog HDL 및 Vivado 실습](http://www.kocw.net/home/search/kemView.do?kemId=1428200)
@@ -197,11 +197,11 @@ end
 ## 5. 검증 결과
 
 ### 테스트 항목
-- [ ] Full Adder 전체 입력 조합 검증
-- [ ] 4-bit Adder의 Carry-in/Carry-out 검증
-- [ ] assign / always(if) / always(case) MUX 출력 비교
-- [ ] Inertial Delay의 짧은 펄스 제거 확인
-- [ ] Blocking / Nonblocking 시뮬레이션 비교
+- [x] Full Adder 전체 입력 조합 검증
+- [x] 4-bit Adder의 Carry-in/Carry-out 검증
+- [x] assign / always(if) MUX 출력 비교
+- [x] Inertial Delay의 짧은 펄스 제거 확인
+- [x] Blocking / Nonblocking 시뮬레이션 비교
 
 ### 예상 결과 / 실제 결과
 
@@ -210,9 +210,9 @@ end
 | Full Adder | 모든 입력 조합에 대해 Sum/Cout 일치 | 확인 |
 | 4-bit Adder | Carry-in을 포함한 덧셈 정상 동작 | 확인 |
 | MUX2 비교 | 두 가지 방식의 출력 일치 | 확인 |
-| Inertial Delay | 지연보다 짧은 펄스가 반영되지 않음 | 미확인 |
-| Blocking | 순차 할당에 따른 값 갱신 | 미확인 |
-| Nonblocking | 이전 값을 기준으로 갱신 | 미확인 |
+| Inertial Delay | 지연보다 짧은 펄스가 반영되지 않음 | 확인 |
+| Blocking | 순차 할당에 따른 값 갱신 | 확인 |
+| Nonblocking | 이전 값을 기준으로 갱신 | 확인 |
 
 ### 시뮬레이션 파형 및 로그
 - Full Adder:
@@ -228,6 +228,8 @@ end
   <img width="1028" height="155" alt="image" src="https://github.com/user-attachments/assets/a932ec44-a8fa-473c-8ba0-796e23280c11" />
 
 - Blocking / Nonblocking:
+  <img width="1029" height="194" alt="image" src="https://github.com/user-attachments/assets/9f20cf9e-76f2-4f49-bbd8-5c0b33af0e51" />
+
 
 ## 6. 에러 및 해결
 - **발생한 문제:**
