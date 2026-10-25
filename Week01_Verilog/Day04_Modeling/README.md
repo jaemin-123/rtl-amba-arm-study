@@ -3,10 +3,10 @@
 ## 1. 학습 목표
 - [x] Gate Primitive를 이용한 게이트 수준 모델링 이해
 - [x] buf, not 및 3상태 버퍼의 동작 이해
-- [ ] Gate Delay, Net Delay, Inertial Delay 이해
+- [x] Gate Delay, Net Delay, Inertial Delay 이해
 - [x] 연속 할당문(`assign`)과 절차형 할당문의 차이 이해
 - [x] `always`와 `initial` 구문의 동작 이해
-- [ ] Sensitivity List의 역할 이해
+- [x] Sensitivity List의 역할 이해
 - [x] Blocking(`=`)과 Nonblocking(`<=`) 할당문의 차이 이해
 - [x] RTL 및 Testbench 작성 후 시뮬레이션 검증
 
