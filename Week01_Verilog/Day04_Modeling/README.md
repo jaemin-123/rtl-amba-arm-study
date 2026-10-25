@@ -225,6 +225,8 @@ end
   <img width="1031" height="170" alt="image" src="https://github.com/user-attachments/assets/856b0448-fc73-4624-a0f9-4e01bf61778e" />
 
 - Inertial Delay:
+  <img width="1028" height="155" alt="image" src="https://github.com/user-attachments/assets/a932ec44-a8fa-473c-8ba0-796e23280c11" />
+
 - Blocking / Nonblocking:
 
 ## 6. 에러 및 해결
