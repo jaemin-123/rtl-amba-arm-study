@@ -177,25 +177,19 @@ end
 
 ### 4.3 MUX2 - assign / always 비교
 - **참고:** `08.pdf`, `09.pdf`
-- **RTL 파일:** `rtl/mux2_assign.v`, `rtl/mux2_always.v`
+- **RTL 파일:** `rtl/mux2_assign.v`
+- **기존 RTL:** Day01/Day02에서 작성한 `always` + `if`, `always` + `case` 방식 재사용
 - **TB 파일:** `tb/tb_mux2_compare.v`
-- **목표:** 동일한 기능을 서로 다른 모델링 방식으로 구현
-- **검증:** 모든 입력 조합에 대해 출력값 비교
+- **목표:** 동일한 기능을 연속 할당문과 행위수준 모델링으로 구현하여 차이 이해
+- **검증:** 세 가지 방식의 출력이 일치하는지 확인
 
-### 4.4 Sensitivity List 비교
-- **참고:** `09.pdf`
-- **RTL 파일:** `rtl/mux2_bad.v`
-- **TB 파일:** `tb/tb_mux2_sensitivity.v`
-- **목표:** 감지신호목록에서 `sel`이 누락된 경우의 문제 확인
-- **검증:** `sel`만 변경했을 때 출력이 갱신되는지 확인
-
-### 4.5 Gate Delay / Inertial Delay
+### 4.4 Gate Delay / Inertial Delay
 - **참고:** `07.pdf`, `08.pdf`
 - **실습 파일:** `tb/tb_inertial_delay.v`
 - **목표:** 지연 시간보다 짧은 펄스의 출력 반영 여부 확인
 - **검증:** 입력 펄스 폭과 출력 변화 비교
 
-### 4.6 Blocking / Nonblocking 비교
+### 4.5 Blocking / Nonblocking 비교
 - **참고:** `10.pdf`
 - **TB 파일:** `tb/tb_assignment_compare.v`
 - **목표:** 두 할당 방식의 실행 순서 및 결과 비교
@@ -206,8 +200,7 @@ end
 ### 테스트 항목
 - [ ] Full Adder 전체 입력 조합 검증
 - [ ] 4-bit Adder의 Carry-in/Carry-out 검증
-- [ ] assign / always MUX 출력 비교
-- [ ] Sensitivity List 누락에 따른 동작 확인
+- [ ] assign / always(if) / always(case) MUX 출력 비교
 - [ ] Inertial Delay의 짧은 펄스 제거 확인
 - [ ] Blocking / Nonblocking 시뮬레이션 비교
 
@@ -217,8 +210,7 @@ end
 |---|---|---|
 | Full Adder | 모든 입력 조합에 대해 Sum/Cout 일치 | 미확인 |
 | 4-bit Adder | Carry-in을 포함한 덧셈 정상 동작 | 미확인 |
-| MUX2 비교 | 두 방식의 출력 일치 | 미확인 |
-| Sensitivity List 누락 | sel만 변경 시 출력 갱신 누락 가능 | 미확인 |
+| MUX2 비교 | 세 가지 방식의 출력 일치 | 미확인 |
 | Inertial Delay | 지연보다 짧은 펄스가 반영되지 않음 | 미확인 |
 | Blocking | 순차 할당에 따른 값 갱신 | 미확인 |
 | Nonblocking | 이전 값을 기준으로 갱신 | 미확인 |
@@ -232,8 +224,7 @@ end
 
 - MUX2:
   <img width="1031" height="170" alt="image" src="https://github.com/user-attachments/assets/856b0448-fc73-4624-a0f9-4e01bf61778e" />
-  
-- Sensitivity List:
+
 - Inertial Delay:
 - Blocking / Nonblocking:
 
