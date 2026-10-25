@@ -177,11 +177,10 @@ end
 
 ### 4.3 MUX2 - assign / always 비교
 - **참고:** `08.pdf`, `09.pdf`
-- **RTL 파일:** `rtl/mux2_assign.v`
-- **기존 RTL:** Day01/Day02에서 작성한 `always` + `if`, `always` + `case` 방식 재사용
+- **RTL 파일:** `rtl/mux2_assign.v`, `rtl/mux2_always.v`
 - **TB 파일:** `tb/tb_mux2_compare.v`
 - **목표:** 동일한 기능을 연속 할당문과 행위수준 모델링으로 구현하여 차이 이해
-- **검증:** 세 가지 방식의 출력이 일치하는지 확인
+- **검증:** 두 가지 방식의 출력이 일치하는지 확인
 
 ### 4.4 Gate Delay / Inertial Delay
 - **참고:** `07.pdf`, `08.pdf`
@@ -208,9 +207,9 @@ end
 
 | 테스트 항목 | 예상 결과 | 실제 결과 |
 |---|---|---|
-| Full Adder | 모든 입력 조합에 대해 Sum/Cout 일치 | 미확인 |
-| 4-bit Adder | Carry-in을 포함한 덧셈 정상 동작 | 미확인 |
-| MUX2 비교 | 세 가지 방식의 출력 일치 | 미확인 |
+| Full Adder | 모든 입력 조합에 대해 Sum/Cout 일치 | 확인 |
+| 4-bit Adder | Carry-in을 포함한 덧셈 정상 동작 | 확인 |
+| MUX2 비교 | 두 가지 방식의 출력 일치 | 확인 |
 | Inertial Delay | 지연보다 짧은 펄스가 반영되지 않음 | 미확인 |
 | Blocking | 순차 할당에 따른 값 갱신 | 미확인 |
 | Nonblocking | 이전 값을 기준으로 갱신 | 미확인 |
