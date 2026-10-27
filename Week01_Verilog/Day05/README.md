@@ -253,7 +253,8 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
   <img width="1036" height="174" alt="image" src="https://github.com/user-attachments/assets/41fa3732-ad4a-4e39-bd2a-b5fe366d8ca8" />
 
 - Shift-Add Multiplier:
-- SystemVerilog 비교:
+  <img width="1035" height="140" alt="image" src="https://github.com/user-attachments/assets/959df1a6-48d9-46cf-8093-024e8941e987" />
+
 - Bit Counter (선택):
 
 ## 7. 에러 및 해결
