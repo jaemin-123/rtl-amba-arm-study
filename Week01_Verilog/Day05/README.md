@@ -250,6 +250,8 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
   <img width="1030" height="248" alt="image" src="https://github.com/user-attachments/assets/8b37acfa-8be0-43d8-8635-c4ffdbccbedc" />
 
 - Priority Encoder:
+  <img width="1036" height="174" alt="image" src="https://github.com/user-attachments/assets/41fa3732-ad4a-4e39-bd2a-b5fe366d8ca8" />
+
 - Shift-Add Multiplier:
 - SystemVerilog 비교:
 - Bit Counter (선택):
