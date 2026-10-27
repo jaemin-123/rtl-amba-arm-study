@@ -30,9 +30,9 @@ module priority_encoder_sv_1(
         valid = 1'b1;
         
         if (encode[3])
-            enc = 2'b10;
-        else if (encode[2])
             enc = 2'b11;
+        else if (encode[2])
+            enc = 2'b10;
         else if (encode[1])
             enc = 2'b01;
         else if (encode[0])
