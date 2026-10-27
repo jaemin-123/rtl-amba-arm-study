@@ -242,7 +242,7 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
 | Priority Encoder `0110` | `10` | 확인 |
 | Priority Encoder `0011` | `01` | 확인 |
 | Multiplier `255 × 255` | 65025 | 확인 |
-| Bit Counter `10101010` | 4 | 미확인 |
+| Bit Counter `10101010` | 4 | 확인 |
 
 ### 시뮬레이션 파형 및 로그
 - D Flip-Flop:
@@ -255,6 +255,8 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
   <img width="1035" height="140" alt="image" src="https://github.com/user-attachments/assets/959df1a6-48d9-46cf-8093-024e8941e987" />
 
 - Bit Counter (선택):
+  <img width="1039" height="109" alt="image" src="https://github.com/user-attachments/assets/2b61931e-e02a-4214-b536-27467c10d2d9" />
+
 
 ## 7. 에러 및 해결
 - **발생한 문제:**
