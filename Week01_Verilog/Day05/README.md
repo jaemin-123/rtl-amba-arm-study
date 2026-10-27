@@ -238,11 +238,10 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
 |---|---|---|
 | DFF Reset | Reset 활성화 시 Q=0 | 확인 |
 | DFF Set | Set 활성화 시 Q=1 | 확인 |
-| Priority Encoder `1000` | `11` | 미확인 |
-| Priority Encoder `0110` | `10` | 미확인 |
-| Priority Encoder `0011` | `01` | 미확인 |
-| Multiplier `15 × 10` | 150 | 미확인 |
-| Multiplier `255 × 255` | 65025 | 미확인 |
+| Priority Encoder `1000` | `11` | 확인 |
+| Priority Encoder `0110` | `10` | 확인 |
+| Priority Encoder `0011` | `01` | 확인 |
+| Multiplier `255 × 255` | 65025 | 확인 |
 | Bit Counter `10101010` | 4 | 미확인 |
 
 ### 시뮬레이션 파형 및 로그
