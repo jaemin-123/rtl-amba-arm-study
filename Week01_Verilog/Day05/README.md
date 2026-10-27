@@ -1,14 +1,14 @@
 ﻿# Week 01 - Day 05: Verilog 조건문과 반복문
 
 ## 1. 학습 목표
-- [ ] `if`, `else if`, Nested if 조건문 이해
+- [X] `if`, `else if`, Nested if 조건문 이해
 - [ ] `case`, `casez`, `casex`의 동작 차이 이해
-- [ ] 불완전한 조건문으로 발생하는 Latch 문제 이해
-- [ ] 동기식/비동기식 Reset의 차이 이해
-- [ ] `forever`, `repeat`, `while`, `for` 반복문 이해
-- [ ] Priority Encoder 및 Shift-Add Multiplier 구현
-- [ ] SystemVerilog `always_comb` 활용
-- [ ] Vivado에서 RTL 및 Testbench 검증
+- [X] 불완전한 조건문으로 발생하는 Latch 문제 이해
+- [X] 동기식/비동기식 Reset의 차이 이해
+- [X] `forever`, `repeat`, `while`, `for` 반복문 이해
+- [X] Priority Encoder 및 Shift-Add Multiplier 구현
+- [X] SystemVerilog `always_comb` 활용
+- [X] Vivado에서 RTL 및 Testbench 검증
 
 ## 2. 공부 자료
 - **강의:** [KOCW - Verilog HDL 및 Vivado 실습](http://www.kocw.net/home/search/kemView.do?kemId=1428200)
@@ -194,10 +194,10 @@ end
 
 기존 Priority Encoder를 SystemVerilog로 다시 구현하여 비교한다.
 
-- [ ] `reg` 대신 `logic` 사용
-- [ ] `always @(*)` 대신 `always_comb` 사용
-- [ ] `casez` 또는 명시적 우선순위 조건의 동작 이해
-- [ ] 기존 Verilog와 출력 비교
+- [X] `reg` 대신 `logic` 사용
+- [X] `always @(*)` 대신 `always_comb` 사용
+- [X] `casez` 또는 명시적 우선순위 조건의 동작 이해
+- [X] 기존 Verilog와 출력 비교
 
 **추가 RTL:** `rtl/priority_encoder_sv.sv`
 
@@ -224,13 +224,13 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
 ## 6. 검증 결과
 
 ### 테스트 항목
-- [ ] 비동기 Set/Reset DFF 동작 확인
-- [ ] Priority Encoder 우선순위 확인
-- [ ] 입력 `0000` 예외 처리 확인
-- [ ] 8비트 Multiplier 연산 결과 확인
-- [ ] `repeat` 기반 곱셈 결과와 `*` 결과 비교
-- [ ] SystemVerilog Priority Encoder 출력 비교
-- [ ] Bit Counter 동작 확인 (선택)
+- [x] 비동기 Set/Reset DFF 동작 확인
+- [X] Priority Encoder 우선순위 확인
+- [X] 입력 `0000` 예외 처리 확인
+- [X] 8비트 Multiplier 연산 결과 확인
+- [X] `repeat` 기반 곱셈 결과와 `*` 결과 비교
+- [X] SystemVerilog Priority Encoder 출력 비교
+- [X] Bit Counter 동작 확인 (선택)
 
 ### 예상 결과 / 실제 결과
 
@@ -259,15 +259,41 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
 
 
 ## 7. 에러 및 해결
+
 - **발생한 문제:**
+  - SystemVerilog에서 `always_comb @(*)`를 사용하여 문법 오류 발생
+  - Priority Encoder의 `casex`와 Testbench에서 사용하는 `x`의 의미가 혼동됨
+
 - **원인:**
+  - `always_comb`는 감지신호목록을 자동으로 처리하므로 `@(*)`를 추가할 수 없음
+  - `casex`는 `x`, `z`를 Don't Care로 취급하지만, Testbench에서 입력한 `x`는 실제 Unknown 값임
+
 - **수정한 RTL/SV/TB 코드:**
+  - `always_comb @(*)`를 `always_comb`로 수정
+  - Priority Encoder Testbench에 실제 0/1 입력값을 사용하여 우선순위 검증
+  - Bit Counter TB에서 `while`과 `for` 방식의 출력을 비교하도록 구성
+
 - **변경 전후 결과:**
+  - SystemVerilog 문법 오류 해결
+  - Priority Encoder의 우선순위와 `valid` 신호 동작을 검증할 수 있도록 개선
+  - Bit Counter의 두 구현 방식이 동일한 결과를 출력하는지 비교할 수 있도록 개선
 
 ## 8. 학습 내용 및 느낀 점
+
 - **새롭게 이해한 개념:**
+  - `if-else`, `case`를 이용한 우선순위 논리 구현과 `valid` 신호의 역할
+  - `always_comb`와 Verilog의 `always @(*)` 차이
+  - `repeat`, `while`, `for`의 반복 조건 및 사용 방법
+  - Shift-Add 방식으로 곱셈 알고리즘을 RTL에 직접 구현하는 원리
+  - 조합논리에서 기본값 할당을 통해 불필요한 Latch 추론을 방지하는 방법
+
 - **기존에 잘못 알고 있던 부분:**
+  - `always_comb`에도 `@(*)`가 필요하다고 생각했으나 별도로 작성하지 않는다는 점을 이해함
+
 - **추가로 공부할 내용:**
+  - SystemVerilog의 `task`, `assert`를 활용한 자동 검증
+  - Latch 발생 조건과 방지 방법
+  - Python을 활용한 RTL Reference Model 및 테스트 자동화
 
 ## 9. 다음 학습에서 보완할 것
 - `always_comb`와 `always_ff` 활용
