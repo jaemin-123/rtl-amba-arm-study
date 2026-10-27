@@ -236,8 +236,8 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
 
 | 테스트 항목 | 예상 결과 | 실제 결과 |
 |---|---|---|
-| DFF Reset | Reset 활성화 시 Q=0 | 미확인 |
-| DFF Set | Set 활성화 시 Q=1 | 미확인 |
+| DFF Reset | Reset 활성화 시 Q=0 | 확인 |
+| DFF Set | Set 활성화 시 Q=1 | 확인 |
 | Priority Encoder `1000` | `11` | 미확인 |
 | Priority Encoder `0110` | `10` | 미확인 |
 | Priority Encoder `0011` | `01` | 미확인 |
@@ -247,6 +247,8 @@ ARM Software와 Memory-mapped I/O를 학습하는 주차에서 연결할 예정.
 
 ### 시뮬레이션 파형 및 로그
 - D Flip-Flop:
+  <img width="1030" height="248" alt="image" src="https://github.com/user-attachments/assets/8b37acfa-8be0-43d8-8635-c4ffdbccbedc" />
+
 - Priority Encoder:
 - Shift-Add Multiplier:
 - SystemVerilog 비교:
