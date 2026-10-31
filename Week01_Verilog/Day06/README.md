@@ -292,16 +292,53 @@ ALL TESTS PASSED: 108
 **합성 리포트:**
 <img width="555" height="176" alt="image" src="https://github.com/user-attachments/assets/16d85faf-3df5-4579-92c0-5b378a72f5fc" />
 
+<img width="498" height="89" alt="image" src="https://github.com/user-attachments/assets/fabd0d3d-8c05-45ba-a4e3-a645f25e7154" />
+
 ## 7. 에러 및 해결
+
 - **발생한 문제:**
+  - SystemVerilog ALU에서 `opcode` 중복 선언으로 Synthesis Warning 발생
+  - 중복 선언을 수정하는 과정에서 `opcode` 입력 포트를 제거하여 `Net opcode does not have driver` Warning 발생
+  - Testbench에서 `always_comb` 내부에 시간 지연 및 결과 검증을 작성하려고 했으나 사용 방식에 문제가 있었음
+
 - **원인:**
+  - `input logic [2:0] opcode`와 `opcode_t opcode`를 같은 모듈에 중복 선언함
+  - `enum`으로 내부 변수를 선언하는 것과 외부 입력 포트를 선언하는 것의 차이를 정확히 이해하지 못함
+  - `always_comb`는 조합논리 전용 블록이므로 `#1`과 같은 시간 지연을 사용할 수 없으며, DUT 출력이 갱신되기 전에 비교하면 Race Condition이 발생할 수 있음
+
 - **수정한 RTL/SV/TB 코드:**
+  - ALU의 `input logic [2:0] opcode`를 유지하고 내부의 중복 선언 제거
+  - `typedef enum logic [2:0]`으로 Opcode 상수를 정의하여 `case` 문에서 사용
+  - 예상 결과 계산은 `function automatic`으로 분리
+  - 입력 인가, 시간 지연, 결과 비교를 `task automatic`으로 구성
+  - `assert`와 `$fatal`을 이용하여 Verilog/SV 출력 및 Expected Value 비교
+
 - **변경 전후 결과:**
+  - `opcode` 선언 문제의 원인과 수정 방법을 파악함
+  - 입력 포트와 내부 변수가 서로 다른 역할을 한다는 점을 이해함
+  - 기존의 단순 파형 확인 방식에서 자동 PASS/FAIL 검증 구조로 개선함
+  - 병렬 합성 관련 `Synth 8-7080` Warning은 RTL 기능 오류와 직접적인 관련이 없음을 확인함
 
 ## 8. 학습 내용 및 느낀 점
+
 - **새롭게 이해한 개념:**
+  - `case`와 `default`를 활용하여 ADD, SUB, MUL, AND, OR, XOR 연산을 수행하는 8비트 ALU 구현
+  - Signed/Unsigned 자료형에 따른 연산 결과 해석 및 출력 비트 폭의 중요성
+  - SystemVerilog의 `logic`, `always_comb`, `typedef enum` 사용법
+  - `function automatic`을 이용한 Reference Model과 `task automatic`을 이용한 테스트 절차 구성
+  - `assert`, `$fatal`, `$urandom_range()`를 이용한 자동 검증 방법
+  - Vivado Synthesis Warning을 분석하여 RTL 선언 및 연결 문제를 확인하는 방법
+
 - **기존에 잘못 알고 있던 부분:**
+  - `enum` 변수를 선언하면 외부 입력 포트 역할까지 수행한다고 생각했으나, 입력 포트는 별도로 연결되어야 한다는 점을 이해함
+  - SystemVerilog가 Verilog와 문법만 조금 다른 언어라고 생각했으나, `enum`, `function`, `task`, `assert` 등 검증 기능이 크게 확장되어 있다는 점을 알게 됨
+
 - **추가로 공부할 내용:**
+  - Signed/Unsigned 연산 및 Overflow와 Carry 처리
+  - `typedef enum`과 `package`를 활용한 RTL 구조화
+  - SystemVerilog Assertion과 Functional Coverage
+  - ALU의 LUT/DSP Utilization 및 Timing Report 분석
+  - Python Reference Model을 활용한 RTL 검증 자동화
 
 ## 9. 다음 학습에서 보완할 내용
 - Carry와 Overflow 처리
