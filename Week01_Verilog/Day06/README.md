@@ -251,13 +251,6 @@ ALL TESTS PASSED: 108
 - 랜덤 테스트와 Reference Model을 활용하면 수작업으로 파형을 확인하는 것보다 많은 입력 조합을 효율적으로 검증할 수 있다.
 - 이번 검증 구조는 향후 Scoreboard, Functional Coverage, UVM 학습의 기초가 된다.
 
-검증 항목:
-- [ ] 5개 Opcode 정상 동작
-- [ ] 0, 최대값 등 경계값 확인
-- [ ] ADD/SUB 결과의 8비트 절단 동작 확인
-- [ ] 미사용 Opcode 결과 확인
-- [ ] 랜덤 테스트 100개 PASS 확인
-
 ### 4.3 Vivado Synthesis
 - [ ] Synthesis 정상 완료
 - [ ] Utilization Report 저장
