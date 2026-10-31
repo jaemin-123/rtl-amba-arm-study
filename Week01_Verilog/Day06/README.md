@@ -105,7 +105,7 @@ ALU는 입력 데이터에 대해 산술 및 논리 연산을 수행하는 조�
 | Synthesis | 정상 완료, Latch 없음 | 미확인 |
 
 **시뮬레이션 파형:**
-
+<img width="1037" height="317" alt="image" src="https://github.com/user-attachments/assets/b964ec48-21cd-4bef-bdb5-e3005f11b315" />
 **PASS/FAIL 로그:**
 
 **합성 리포트:**
