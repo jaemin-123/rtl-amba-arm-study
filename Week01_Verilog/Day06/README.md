@@ -288,8 +288,10 @@ ALL TESTS PASSED: 108
 | Synthesis | 정상 완료, Latch 없음 | 미확인 |
 
 **시뮬레이션 파형:**
-<img width="1037" height="317" alt="image" src="https://github.com/user-attachments/assets/b964ec48-21cd-4bef-bdb5-e3005f11b315" />
+<img width="1040" height="193" alt="image" src="https://github.com/user-attachments/assets/087dde45-f94b-42a9-889c-8b44beeb42e3" />
+
 **PASS/FAIL 로그:**
+<img width="202" height="50" alt="image" src="https://github.com/user-attachments/assets/fc414b3e-3075-4016-9004-f5e2b0ef6cec" />
 
 **합성 리포트:**
 
