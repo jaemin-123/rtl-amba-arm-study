@@ -1,14 +1,14 @@
 ﻿# Week 01 - Day 06: 8-bit ALU 설계 및 자동 검증
 
 ## 1. 학습 목표
-- [ ] Day01~Day05 Verilog 핵심 문법 복습
-- [ ] `case` 문을 이용한 8-bit ALU 구현
-- [ ] ADD, SUB, AND, OR, XOR 5개 연산 구현
-- [ ] 미사용 Opcode에 대한 기본 출력 처리
-- [ ] SystemVerilog Testbench의 `task`, `assert` 활용
-- [ ] 랜덤 입력 100개 자동 검증
-- [ ] Vivado Synthesis 및 Utilization Report 확인
-- [ ] Latch 추론 여부 확인
+- [x] Day01~Day05 Verilog 핵심 문법 복습
+- [x] `case` 문을 이용한 8-bit ALU 구현
+- [x] ADD, SUB, AND, OR, XOR 5개 연산 구현
+- [x] 미사용 Opcode에 대한 기본 출력 처리
+- [x] SystemVerilog Testbench의 `task`, `assert` 활용
+- [x] 랜덤 입력 100개 자동 검증
+- [x] Vivado Synthesis 및 Utilization Report 확인
+- [x] Latch 추론 여부 확인
 
 ## 2. 공부 자료
 - 기존 Day01~Day05 학습 README 및 RTL 코드
@@ -224,22 +224,18 @@ Random Test (100개)
 
 #### 4.2.8 검증 항목 및 결과
 
-- [ ] ADD/SUB/MUL/AND/OR/XOR 6개 연산 검증
-- [ ] 미사용 Opcode `000`, `111` 검증
-- [ ] Verilog와 SystemVerilog 출력 비교
+- [x] ADD/SUB/MUL/AND/OR/XOR 6개 연산 검증
+- [x] 미사용 Opcode `000`, `111` 검증
+- [x] Verilog와 SystemVerilog 출력 비교
 - [ ] Expected Value 비교
-- [ ] 랜덤 테스트 100개 실행
-- [ ] 전체 108개 테스트 PASS 확인
+- [x] 랜덤 테스트 100개 실행
+- [x] 전체 108개 테스트 PASS 확인
 
 **예상 최종 로그**
 
 ```text
 ALL TESTS PASSED: 108
 ```
-
-**실제 시뮬레이션 결과:** 실행 후 작성
-
-**파형 및 로그:** 실행 후 첨부
 
 #### 4.2.9 학습 내용 정리
 
@@ -252,10 +248,10 @@ ALL TESTS PASSED: 108
 - 이번 검증 구조는 향후 Scoreboard, Functional Coverage, UVM 학습의 기초가 된다.
 
 ### 4.3 Vivado Synthesis
-- [ ] Synthesis 정상 완료
-- [ ] Utilization Report 저장
+- [x] Synthesis 정상 완료
+- [x] Utilization Report 저장
 - [ ] Latch 관련 경고 확인
-- [ ] 합성 결과 분석
+- [x] 합성 결과 분석
 
 ## 5. 언어별 연계 학습
 
@@ -278,14 +274,14 @@ ALL TESTS PASSED: 108
 
 | 검증 항목 | 예상 결과 | 실제 결과 |
 |---|---|---|
-| ADD | 8비트 덧셈 결과 | 미확인 |
-| SUB | 8비트 뺄셈 결과 | 미확인 |
-| AND | 비트 AND | 미확인 |
-| OR | 비트 OR | 미확인 |
-| XOR | 비트 XOR | 미확인 |
-| 미사용 Opcode | 0 | 미확인 |
-| 랜덤 테스트 100개 | 전체 PASS | 미확인 |
-| Synthesis | 정상 완료, Latch 없음 | 미확인 |
+| ADD | 8비트 덧셈 결과 | 확인 |
+| SUB | 8비트 뺄셈 결과 | 확인 |
+| AND | 비트 AND | 확인 |
+| OR | 비트 OR | 확인 |
+| XOR | 비트 XOR | 확인 |
+| 미사용 Opcode | 0 | 확인 |
+| 랜덤 테스트 100개 | 전체 PASS | 확인 |
+| Synthesis | 정상 완료, Latch 없음 | 확인 |
 
 **시뮬레이션 파형:**
 <img width="1040" height="193" alt="image" src="https://github.com/user-attachments/assets/087dde45-f94b-42a9-889c-8b44beeb42e3" />
@@ -294,6 +290,7 @@ ALL TESTS PASSED: 108
 <img width="202" height="50" alt="image" src="https://github.com/user-attachments/assets/fc414b3e-3075-4016-9004-f5e2b0ef6cec" />
 
 **합성 리포트:**
+<img width="555" height="176" alt="image" src="https://github.com/user-attachments/assets/16d85faf-3df5-4579-92c0-5b378a72f5fc" />
 
 ## 7. 에러 및 해결
 - **발생한 문제:**
