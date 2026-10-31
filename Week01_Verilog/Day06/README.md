@@ -57,9 +57,199 @@ ALU는 입력 데이터에 대해 산술 및 논리 연산을 수행하는 조�
 | 100 | XOR |
 | 101~111 | 0 출력 |
 
-### 4.2 SystemVerilog Testbench
-- **TB:** `tb/tb_alu8.sv`
-- **목표:** 직접 지정한 입력과 랜덤 입력 자동 검증
+### 4.2 SystemVerilog Testbench 및 자동 검증
+
+- **TB 파일:** `tb/tb_alu8_sv.sv`
+- **검증 대상:** `alu8.v`, `alu8_sv.sv`
+- **목표:** Verilog와 SystemVerilog로 작성한 ALU의 출력 비교 및 자동 검증
+- **검증 방식:** Directed Test 8개 + Random Test 100개
+
+#### 4.2.1 Verilog TB와 SystemVerilog TB 비교
+
+| 구분 | Verilog | SystemVerilog |
+|---|---|---|
+| 신호 선언 | `reg`, `wire` | `logic` |
+| Opcode 정의 | `localparam` | `typedef enum` |
+| 예상 결과 계산 | `always`, `case` | `function automatic` |
+| 반복 검증 | `initial`, `always` | `task automatic` |
+| 결과 비교 | `if`, `$error` | `assert`, `$fatal` |
+| 랜덤 테스트 | `$random` 등 | `$urandom_range()` 등 |
+
+SystemVerilog는 기존 Verilog 문법을 지원하면서 자료형, 함수, Task, Assertion 등의 기능을 추가하여 검증 코드를 구조화할 수 있다.
+
+#### 4.2.2 typedef enum - Opcode 정의
+
+```systemverilog
+typedef enum logic [2:0] {
+    OP_DEFAULT0 = 3'b000,
+    OP_ADD      = 3'b001,
+    OP_SUB      = 3'b010,
+    OP_MUL      = 3'b011,
+    OP_AND      = 3'b100,
+    OP_OR       = 3'b101,
+    OP_XOR      = 3'b110,
+    OP_DEFAULT7 = 3'b111
+} opcode_t;
+
+opcode_t opcode;
+```
+
+- `typedef`는 새로운 자료형 이름을 정의한다.
+- `enum`은 여러 상수값을 열거형으로 정의한다.
+- `logic [2:0]`은 Opcode의 비트 폭을 지정한다.
+- `opcode_t`는 정의한 열거형 자료형이다.
+- 일반 비트 벡터와 달리 열거형은 타입 검사를 제공하며, 정수에서 변환할 때 명시적 캐스팅이 필요할 수 있다.
+
+#### 4.2.3 function automatic - Reference Model
+
+```systemverilog
+function automatic logic [15:0] golden_alu(
+    input logic [7:0] x,
+    input logic [7:0] y,
+    input opcode_t op
+);
+```
+
+- `function`은 입력값을 이용해 결과를 계산하고 반환한다.
+- `automatic`은 호출마다 독립적인 지역 변수를 사용하도록 한다.
+- `golden_alu()`는 ALU의 예상 결과를 계산하는 Reference Model 역할을 한다.
+- `function` 내부에는 `#1`과 같은 시간 지연을 사용할 수 없다.
+
+```systemverilog
+expected = golden_alu(in_a, in_b, in_op);
+```
+
+기존 Verilog TB에서는 `always` 블록에서 예상 결과를 계산했지만, SystemVerilog에서는 `function`으로 분리하여 재사용할 수 있다.
+
+#### 4.2.4 task automatic - 반복 검증
+
+```systemverilog
+task automatic check_alu(
+    input logic [7:0] in_a,
+    input logic [7:0] in_b,
+    input opcode_t in_op
+);
+```
+
+- `task`는 여러 테스트 절차를 하나로 묶어 재사용하는 기능이다.
+- 입력 인가, 예상 결과 계산, 출력 비교, 로그 출력을 하나의 Task에서 수행한다.
+- `function`과 달리 `#1`과 같은 시간 지연을 사용할 수 있다.
+
+**Task 실행 과정**
+
+1. `a`, `b`, `opcode` 입력 설정
+2. `golden_alu()`로 예상 결과 계산
+3. `#1` 지연 후 DUT 출력 확인
+4. Verilog와 SystemVerilog ALU 출력 비교
+5. 실제 출력과 예상 결과 비교
+6. PASS/FAIL 출력 및 테스트 카운트 갱신
+
+```systemverilog
+check_alu(8'hFF, 8'h01, OP_ADD);
+check_alu(8'h03, 8'h05, OP_SUB);
+```
+
+이처럼 Task를 호출하면 테스트 절차를 반복 작성하지 않아도 된다.
+
+#### 4.2.5 assert - 자동 검증
+
+```systemverilog
+assert (result_v === result_sv)
+else
+    $fatal(1, "Verilog/SV MISMATCH");
+
+assert (result_sv === expected)
+else
+    $fatal(1, "WRONG RESULT");
+```
+
+- `assert`는 지정한 조건이 만족되는지 검사한다.
+- `===`는 X/Z 상태까지 구분하여 비교하는 연산자이다.
+- `$fatal`은 검증 실패 메시지를 출력하고 시뮬레이션을 종료한다.
+- `result_v`와 `result_sv`가 같은지 먼저 확인하고, 이후 예상 결과와 비교한다.
+
+**주의:** 두 DUT의 결과가 같더라도 둘 다 잘못 계산했을 가능성이 있으므로 Expected Value와의 비교도 필요하다.
+
+#### 4.2.6 Random Test - 100개 자동 검증
+
+```systemverilog
+for (int i = 0; i < 100; i++) begin
+    check_alu(
+        $urandom_range(0, 255),
+        $urandom_range(0, 255),
+        opcode_t'(i % 8)
+    );
+end
+```
+
+- `$urandom_range(0, 255)`는 0~255 범위의 랜덤 값을 생성한다.
+- `for` 문으로 총 100개 테스트를 수행한다.
+- `i % 8`은 Opcode 0~7을 순환하도록 한다.
+- `opcode_t'(...)`는 정수값을 `opcode_t` 열거형으로 변환한다.
+- 모든 Opcode를 최소 12번씩 테스트하며, 입력 `a`, `b`는 랜덤으로 생성한다.
+
+#### 4.2.7 전체 검증 구조
+
+```text
+Directed Test (8개)
+        +
+Random Test (100개)
+        |
+        v
+  check_alu() Task
+        |
+        +----> 입력값 인가
+        |
+        +----> golden_alu() 함수
+        |         |
+        |         v
+        |     Expected Value
+        |
+        +----> alu8.v
+        |         |
+        |         v
+        |      result_v
+        |
+        +----> alu8_sv.sv
+                  |
+                  v
+               result_sv
+                  |
+                  v
+          Assertion 검증
+                  |
+                  v
+             PASS / FAIL
+```
+
+#### 4.2.8 검증 항목 및 결과
+
+- [ ] ADD/SUB/MUL/AND/OR/XOR 6개 연산 검증
+- [ ] 미사용 Opcode `000`, `111` 검증
+- [ ] Verilog와 SystemVerilog 출력 비교
+- [ ] Expected Value 비교
+- [ ] 랜덤 테스트 100개 실행
+- [ ] 전체 108개 테스트 PASS 확인
+
+**예상 최종 로그**
+
+```text
+ALL TESTS PASSED: 108
+```
+
+**실제 시뮬레이션 결과:** 실행 후 작성
+
+**파형 및 로그:** 실행 후 첨부
+
+#### 4.2.9 학습 내용 정리
+
+- SystemVerilog의 `enum`을 사용하면 Opcode나 FSM 상태를 자료형으로 정의할 수 있다.
+- `function`으로 예상 결과 계산을 분리하여 검증 코드를 재사용할 수 있다.
+- `task`는 시간 지연을 포함한 테스트 절차를 하나로 묶는 데 적합하다.
+- `always_comb` 내부에는 시간 지연을 사용할 수 없지만, TB의 `task`에서는 사용할 수 있다.
+- `assert`를 이용해 출력 불일치를 자동으로 검출할 수 있다.
+- 랜덤 테스트와 Reference Model을 활용하면 수작업으로 파형을 확인하는 것보다 많은 입력 조합을 효율적으로 검증할 수 있다.
+- 이번 검증 구조는 향후 Scoreboard, Functional Coverage, UVM 학습의 기초가 된다.
 
 검증 항목:
 - [ ] 5개 Opcode 정상 동작
