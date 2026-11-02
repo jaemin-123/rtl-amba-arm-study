@@ -1,12 +1,14 @@
-# RTL → AMBA → ARM Cortex-M7 | 12주 학습 체크리스트
+# RTL → AMBA → ARM Cortex-M7 | 12주 학습 로드맵
 
 > **목표:** Verilog RTL 설계 → AMBA APB/AXI 인터페이스 → ARM Architecture/Software → Cortex-M7 → ARM(PS)+FPGA(PL) 통합  
 > **학습량:** 12주 × 주 6일 = **72일**, 하루 **약 3시간** (강의 50분 + 참고자료 30분 + 실습 80분 + 정리 20분)  
-> **체크 방법:** 그날의 **강의·자료 학습 + 실습 + 완료 기준**을 모두 달성한 뒤 `- [ ]`을 `- [x]`로 변경  
+> **사용 방법:** Day01~Day72의 날짜를 누르면 해당 Day README로 이동한다. 세부 완료 체크는 각 Day README에서만 관리한다.
 > **환경:** Vivado 2022.2, XSIM, Zybo Z7-20(ARM Cortex-A9), 기존 STM32 개발환경. **Cortex-M7 보드는 STM32H7 별도 필요**  
 > **언어:** 한국어 강의·한글 학습 노트 중심. APB/AXI 사양 및 Cortex-M7의 일부 공식 자료는 필요한 절만 번역해 사용
 
 ## 📍 진행 현황
+
+기존 전체 일정에서 Day01~Day05가 완료로 표시되어 있었던 기록은 유지한다. 세부 결과와 이후 진행 상태는 각 Day README를 기준으로 확인한다.
 
 | 구간 | 주차 | 목표 | 상태 |
 |---|---|---|---|
@@ -69,9 +71,9 @@ KOCW의 **차시 묶음 번호**와 **PDF 앞 번호**는 서로 다르다. 제�
 
 APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·교재·실습 범위를 따른다. C 강의 및 유료 D의 확인되지 않은 차시 번호는 임의로 붙이지 않는다. A/B 차시는 [A 공식 목차](https://www.kocw.or.kr/home/m/search/kemView.do?kemId=1428200), [B 공식 목차](https://www.kocw.net/home/search/kemView.do?kemId=1352183&lid=1352184)를 기준으로 한다. 수강 안내 추가는 수강 완료를 뜻하지 않는다.
 
-## ✅ 날짜별 실행 체크리스트
+## ✅ 날짜별 학습 안내
 
-> **체크 위치 운영:** Day07부터 세부 체크리스트는 각 Day README 맨 위 한 곳에만 둔다. 전체 README는 해당 Day 링크와 범위를 안내하며 중복 체크를 요구하지 않는다. Day01~Day06의 기존 기록은 보존한다.
+> **체크 위치 운영:** 전체 README는 날짜 링크와 학습 범위 안내로 통일한다. 세부 진행 체크는 각 Day README 한 곳에서 관리한다. 일부 미래 Day README는 제목만 있는 준비용 문서이며 학습 시 상세 내용을 추가한다.
 
 ### Week 01 — Verilog 기초 / 조합논리
 
@@ -80,22 +82,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 - Verilog/SV를 중심으로 진행하고 Python은 간단한 모델·비교에 필요한 날만 병행한다. C 본격 학습은 ARM Software 단계에 배치한다.
 - Day06의 108개 PASS는 사용자 실행 기록으로 확인했으며, 전체 완료 체크는 합성·Latch 확인까지 마친 뒤 변경한다.
 
-- [x] **Day 01 (주 1 / 1일차)** — **학습:** A 소개·개요 1~2 차시 / 책 CH1  
+- **[Day 01 (주 1 / 1일차)](Week01_Verilog/Day01_Basic_Combinational/README.md)** — **학습:** A 소개·개요 1~2 차시 / 책 CH1  
   **실습:** Vivado 프로젝트 생성, `mux2.v` 작성  
   **완료 기준:** MUX 0/1 선택 파형 저장
-- [x] **Day 02 (주 1 / 2일차)** — **학습:** A 자료형 강의 / CH2 자료형  
+- **[Day 02 (주 1 / 2일차)](Week01_Verilog/Day02/README.md)** — **학습:** A 자료형 강의 / CH2 자료형  
   **실습:** `wire/reg/logic`와 벡터 폭 예제 `types.v`  
   **완료 기준:** 비트폭 8/16과 signed 차이 기록
-- [x] **Day 03 (주 1 / 3일차)** — **학습:** A 연산자 강의 / CH2 연산자  
+- **[Day 03 (주 1 / 3일차)](Week01_Verilog/Day03_Operators/README.md)** — **학습:** A 연산자 강의 / CH2 연산자  
   **실습:** `operators.v` 산술·논리·비트 연산, 8비트 overflow 시험  
   **완료 기준:** 5종 이상의 연산 결과 비교
-- [x] **Day 04 (주 1 / 4일차)** — **학습:** A 조합회로 모델링의 assign/always 부분 / CH4  
+- **[Day 04 (주 1 / 4일차)](Week01_Verilog/Day04_Modeling/README.md)** — **학습:** A 조합회로 모델링의 assign/always 부분 / CH4  
   **실습:** Gate Primitive 가산기, assign/always MUX2 비교, Inertial Delay, Blocking/Nonblocking 비교  
   **완료 기준:** 가산기·MUX 출력 비교와 지연·할당문 파형 분석
-- [x] **Day 05 (주 1 / 5일차)** — **학습:** A 행위수준 모델링 if/case 부분 / CH5  
+- **[Day 05 (주 1 / 5일차)](Week01_Verilog/Day05/README.md)** — **학습:** A 행위수준 모델링 if/case 부분 / CH5  
   **실습:** 비동기 Set/Reset DFF, Priority Encoder, Shift-Add Multiplier, Bit Counter 및 SV 비교  
   **완료 기준:** 조건문·반복문 실습 및 Verilog/SV 비교 결과 기록
-- [x] **Day 06 (주 1 / 6일차)** — **학습:** CH10 테스트벤치·복습  
+- **[Day 06 (주 1 / 6일차)](Week01_Verilog/Day06/README.md)** — **학습:** CH10 테스트벤치·복습  
   **실습:** 6개 연산 ALU(Verilog/SV), Directed 8 + Random 100 자동 비교, 합성 리포트 저장  
   **완료 기준:** PASS와 래치 없음 확인
 
@@ -108,19 +110,19 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 - **[Day 07 (주 2 / 1일차)](Week02/Day07/README.md)** — **학습:** A 15·16차시 순차회로 모델링-(1)·(2), PDF 19·20  
   **실습:** 래치/DFF, q/q_bar, 할당 방식·순서 비교 및 Verilog/SV 검증  
   **진행 관리:** 상세 README 맨 위 체크리스트에서만 기록. 동기/비동기 리셋 본 실습은 Day08.
-- [ ] **Day 08 (주 2 / 2일차)** — **학습:** A 순차회로 모델링 (2) / CH11 reset  
+- **[Day 08 (주 2 / 2일차)](Week02/Day08/README.md)** — **학습:** A 순차회로 모델링 (2) / CH11 reset  
   **실습:** `counter.v` 동기/비동기 reset 구현  
   **완료 기준:** reset 시퀀스 통과
-- [ ] **Day 09 (주 2 / 3일차)** — **학습:** A 순차회로 모델링 (3) / CH11 shift  
+- **[Day 09 (주 2 / 3일차)](Week02/Day09/README.md)** — **학습:** A 순차회로 모델링 (3) / CH11 shift  
   **실습:** `shift_reg.v` 및 enable 제어  
   **완료 기준:** 파형으로 클록별 변화 확인
-- [ ] **Day 10 (주 2 / 4일차)** — **학습:** CH11 FSM / 강의 FSM 관련 차시  
+- **[Day 10 (주 2 / 4일차)](Week02/Day10/README.md)** — **학습:** CH11 FSM / 강의 FSM 관련 차시  
   **실습:** UART RX IDLE/START/DATA/STOP 상태도  
   **완료 기준:** 상태전이표 README 첨부
-- [ ] **Day 11 (주 2 / 5일차)** — **학습:** CH11 UART 순차회로 복습  
+- **[Day 11 (주 2 / 5일차)](Week02/Day11/README.md)** — **학습:** CH11 UART 순차회로 복습  
   **실습:** `uart_rx.v` 8N1 RX 구현  
   **완료 기준:** 1바이트 수신 성공
-- [ ] **Day 12 (주 2 / 6일차)** — **학습:** CH13 Vivado 합성·타이밍 관련 차시  
+- **[Day 12 (주 2 / 6일차)](Week02/Day12/README.md)** — **학습:** CH13 Vivado 합성·타이밍 관련 차시  
   **실습:** `tb_uart_rx.v` 오동작/리셋 테스트 및 합성  
   **완료 기준:** 정상/오류 case 결과 기록
 
@@ -130,22 +132,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** KOCW A 구조 모델링·시뮬레이션 관련 차시, 책 CH6·7·9
 
-- [ ] **Day 13 (주 3 / 1일차)** — **학습:** CH6 모듈/parameter  
+- **[Day 13 (주 3 / 1일차)](Week03/Day13/README.md)** — **학습:** CH6 모듈/parameter  
   **실습:** 동기 FIFO 포트·parameter 정의  
   **완료 기준:** 폭/깊이 변경 가능
-- [ ] **Day 14 (주 3 / 2일차)** — **학습:** CH7 task/function  
+- **[Day 14 (주 3 / 2일차)](Week03/Day14/README.md)** — **학습:** CH7 task/function  
   **실습:** `tb_fifo.sv` push/pop 태스크 작성  
   **완료 기준:** 태스크로 8개 데이터 기록
-- [ ] **Day 15 (주 3 / 3일차)** — **학습:** CH9 시스템 태스크·검증 코드  
+- **[Day 15 (주 3 / 3일차)](Week03/Day15/README.md)** — **학습:** CH9 시스템 태스크·검증 코드  
   **실습:** `$fatal`/`$display`와 scoreboard  
   **완료 기준:** 의도적 오류 감지
-- [ ] **Day 16 (주 3 / 4일차)** — **학습:** FIFO pointer/full/empty 자체 노트  
+- **[Day 16 (주 3 / 4일차)](Week03/Day16/README.md)** — **학습:** FIFO pointer/full/empty 자체 노트  
   **실습:** `fifo_sync.sv` read/write pointer 구현  
   **완료 기준:** full/empty 전환 정확
-- [ ] **Day 17 (주 3 / 5일차)** — **학습:** FIFO 동시 읽기·쓰기 이론  
+- **[Day 17 (주 3 / 5일차)](Week03/Day17/README.md)** — **학습:** FIFO 동시 읽기·쓰기 이론  
   **실습:** 연속 100회 랜덤 접근, 동시 R/W 검증  
   **완료 기준:** 값 손실/중복 없음
-- [ ] **Day 18 (주 3 / 6일차)** — **학습:** Vivado 합성/타이밍 강의 복습  
+- **[Day 18 (주 3 / 6일차)](Week03/Day18/README.md)** — **학습:** Vivado 합성/타이밍 강의 복습  
   **실습:** FIFO 깊이 8/16별 LUT/FF 보고서 비교  
   **완료 기준:** 결과 표+회고 작성
 
@@ -155,22 +157,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** KOCW B ‘SoC개념’, ‘AMBA 2.0 버스’; KOCW C SoC 설계 흐름
 
-- [ ] **Day 19 (주 4 / 1일차)** — **학습:** B ‘SoC개념’ + C SoC Design Flow 관련 차시  
+- **[Day 19 (주 4 / 1일차)](Week04/Day19/README.md)** — **학습:** B ‘SoC개념’ + C SoC Design Flow 관련 차시  
   **실습:** CPU–Interconnect–Memory–Peripheral 블록도  
   **완료 기준:** 버스 master/slave 식별
-- [ ] **Day 20 (주 4 / 2일차)** — **학습:** B ‘AMBA 2.0 버스’ 강의  
+- **[Day 20 (주 4 / 2일차)](Week04/Day20/README.md)** — **학습:** B ‘AMBA 2.0 버스’ 강의  
   **실습:** AHB/APB와 AXI/Lite/Stream 비교표  
   **완료 기준:** 각 버스 용도 한 줄 설명
-- [ ] **Day 21 (주 4 / 3일차)** — **학습:** Arm APB 공식 사양의 신호/전송 섹션(번역 활용)  
+- **[Day 21 (주 4 / 3일차)](Week04/Day21/README.md)** — **학습:** Arm APB 공식 사양의 신호/전송 섹션(번역 활용)  
   **실습:** PSEL/PENABLE/PREADY/PSLVERR 파형 직접 작성  
   **완료 기준:** SETUP/ACCESS 구별
-- [ ] **Day 22 (주 4 / 4일차)** — **학습:** APB wait-state·read/write 부분  
+- **[Day 22 (주 4 / 4일차)](Week04/Day22/README.md)** — **학습:** APB wait-state·read/write 부분  
   **실습:** `apb_master_bfm.sv`와 wait-state 시퀀스  
   **완료 기준:** PREADY=0에서 제어 유지
-- [ ] **Day 23 (주 4 / 5일차)** — **학습:** APB address decode + GPIO 레지스터맵  
+- **[Day 23 (주 4 / 5일차)](Week04/Day23/README.md)** — **학습:** APB address decode + GPIO 레지스터맵  
   **실습:** `apb_gpio.v` GPIO_OUT/IN/DIR  
   **완료 기준:** 3개 주소 접근 성공
-- [ ] **Day 24 (주 4 / 6일차)** — **학습:** APB 검증·오류 상황 복습  
+- **[Day 24 (주 4 / 6일차)](Week04/Day24/README.md)** — **학습:** APB 검증·오류 상황 복습  
   **실습:** `tb_apb_gpio.sv` 전 시나리오, README  
   **완료 기준:** read/write/wait PASS
 
@@ -180,22 +182,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** 인프런 D 4~7강 + AXI 이론/AXI4-Lite 섹션(선택 유료)
 
-- [ ] **Day 25 (주 5 / 1일차)** — **학습:** D 4~5강: valid-ready 이론·실습  
+- **[Day 25 (주 5 / 1일차)](Week05/Day25/README.md)** — **학습:** D 4~5강: valid-ready 이론·실습  
   **실습:** `rv_source.sv`/`rv_sink.sv`  
   **완료 기준:** 전송 조건 valid && ready 설명
-- [ ] **Day 26 (주 5 / 2일차)** — **학습:** D 6~7강: skid buffer 이론·실습  
+- **[Day 26 (주 5 / 2일차)](Week05/Day26/README.md)** — **학습:** D 6~7강: skid buffer 이론·실습  
   **실습:** `skid_buffer.sv`·ready 랜덤 정지  
   **완료 기준:** backpressure에서 데이터 보존
-- [ ] **Day 27 (주 5 / 3일차)** — **학습:** D AXI4 이론 섹션 또는 Arm AXI 채널 참고  
+- **[Day 27 (주 5 / 3일차)](Week05/Day27/README.md)** — **학습:** D AXI4 이론 섹션 또는 Arm AXI 채널 참고  
   **실습:** AW/W/B/AR/R 채널 및 handshake 타이밍 표  
   **완료 기준:** 쓰기/읽기 흐름 스케치
-- [ ] **Day 28 (주 5 / 4일차)** — **학습:** D AXI4-Lite 설계 섹션 전반부  
+- **[Day 28 (주 5 / 4일차)](Week05/Day28/README.md)** — **학습:** D AXI4-Lite 설계 섹션 전반부  
   **실습:** `axi_lite_regs.sv` read path  
   **완료 기준:** AR/R 응답과 RREADY 지연 PASS
-- [ ] **Day 29 (주 5 / 5일차)** — **학습:** D AXI4-Lite 설계 섹션 후반부  
+- **[Day 29 (주 5 / 5일차)](Week05/Day29/README.md)** — **학습:** D AXI4-Lite 설계 섹션 후반부  
   **실습:** write path 구현, AW/W 별도 버퍼링  
   **완료 기준:** AW/W 서로 다른 시점 도착 PASS
-- [ ] **Day 30 (주 5 / 6일차)** — **학습:** AXI4-Lite 프로토콜 복습  
+- **[Day 30 (주 5 / 6일차)](Week05/Day30/README.md)** — **학습:** AXI4-Lite 프로토콜 복습  
   **실습:** 랜덤 stall TB + register map 문서  
   **완료 기준:** 무손실 + BRESP/RRESP 확인
 
@@ -205,22 +207,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** 인프런 D AXI4-Stream→AXI4→DMA/FPGA 섹션(선택) / Vivado
 
-- [ ] **Day 31 (주 6 / 1일차)** — **학습:** D AXI4-Stream 섹션 이론  
+- **[Day 31 (주 6 / 1일차)](Week06/Day31/README.md)** — **학습:** D AXI4-Stream 섹션 이론  
   **실습:** TVALID/TREADY/TLAST 신호표  
   **완료 기준:** TLAST와 stall 조건 설명
-- [ ] **Day 32 (주 6 / 2일차)** — **학습:** D AXI4-Stream 설계 실습  
+- **[Day 32 (주 6 / 2일차)](Week06/Day32/README.md)** — **학습:** D AXI4-Stream 설계 실습  
   **실습:** `axis_fifo.sv` 또는 기존 CNN Stream RTL 검토  
   **완료 기준:** backpressure 처리 검증
-- [ ] **Day 33 (주 6 / 3일차)** — **학습:** D AXI4 설계 이론·실습 개요  
+- **[Day 33 (주 6 / 3일차)](Week06/Day33/README.md)** — **학습:** D AXI4 설계 이론·실습 개요  
   **실습:** burst LEN/SIZE/BURST와 AXI-Lite 차이 노트  
   **완료 기준:** 4-beat burst 주소 계산
-- [ ] **Day 34 (주 6 / 4일차)** — **학습:** D DMA 설계 섹션 구조 파악  
+- **[Day 34 (주 6 / 4일차)](Week06/Day34/README.md)** — **학습:** D DMA 설계 섹션 구조 파악  
   **실습:** DMA–DDR–Stream 블록도와 기존 CNN flow 비교  
   **완료 기준:** DMA 역할 및 데이터 방향 표시
-- [ ] **Day 35 (주 6 / 5일차)** — **학습:** Vivado IP Integrator AXI IP 패키징 자료  
+- **[Day 35 (주 6 / 5일차)](Week06/Day35/README.md)** — **학습:** Vivado IP Integrator AXI IP 패키징 자료  
   **실습:** AXI4-Lite 제어 IP 패키징 및 Zynq PS 연결  
   **완료 기준:** Address Editor에서 매핑 완료
-- [ ] **Day 36 (주 6 / 6일차)** — **학습:** Vitis/SDK bare-metal 참고, 기존 Zybo 환경  
+- **[Day 36 (주 6 / 6일차)](Week06/Day36/README.md)** — **학습:** Vitis/SDK bare-metal 참고, 기존 Zybo 환경  
   **실습:** PS C에서 CTRL 레지스터 쓰고 STATUS 읽기  
   **완료 기준:** 읽기/쓰기 UART 로그 저장
 
@@ -230,22 +232,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** KOCW B ARM 구조·프로그래머 모델·예외·명령어 강의
 
-- [ ] **Day 37 (주 7 / 1일차)** — **학습:** B ‘CPU 성능, 저전력 설계’  
+- **[Day 37 (주 7 / 1일차)](Week07/Day37/README.md)** — **학습:** B ‘CPU 성능, 저전력 설계’  
   **실습:** CPI/IPC/latency/throughput 비교  
   **완료 기준:** 정의와 예제 1개
-- [ ] **Day 38 (주 7 / 2일차)** — **학습:** B ‘ARM 구조 및 프로그래머 모델’ 전반  
+- **[Day 38 (주 7 / 2일차)](Week07/Day38/README.md)** — **학습:** B ‘ARM 구조 및 프로그래머 모델’ 전반  
   **실습:** ARM 레지스터, PC/SP/LR, CPSR 역사적 모델 정리  
   **완료 기준:** A-profile와 M-profile 차이 메모
-- [ ] **Day 39 (주 7 / 3일차)** — **학습:** B ‘ARM 구조 및 프로그래머 모델’ 후반  
+- **[Day 39 (주 7 / 3일차)](Week07/Day39/README.md)** — **학습:** B ‘ARM 구조 및 프로그래머 모델’ 후반  
   **실습:** Load/store와 주소 지정 방식  
   **완료 기준:** 메모리 접근 흐름 작성
-- [ ] **Day 40 (주 7 / 4일차)** — **학습:** B ‘ARM 예외상황, ARM 어셈블리’  
+- **[Day 40 (주 7 / 4일차)](Week07/Day40/README.md)** — **학습:** B ‘ARM 예외상황, ARM 어셈블리’  
   **실습:** 예외 발생·핸들러 복귀 흐름도  
   **완료 기준:** IRQ와 일반 함수 구별
-- [ ] **Day 41 (주 7 / 5일차)** — **학습:** B ‘ARM 명령어’  
+- **[Day 41 (주 7 / 5일차)](Week07/Day41/README.md)** — **학습:** B ‘ARM 명령어’  
   **실습:** `add/sub/ldr/str/b/bl`와 조건 실행 정리  
   **완료 기준:** 짧은 함수 해석
-- [ ] **Day 42 (주 7 / 6일차)** — **학습:** ARM 툴체인/디스어셈블 예제  
+- **[Day 42 (주 7 / 6일차)](Week07/Day42/README.md)** — **학습:** ARM 툴체인/디스어셈블 예제  
   **실습:** C 함수 `-O0/-O2` 비교, stack 분석  
   **완료 기준:** 어셈블리 차이 표
 
@@ -255,22 +257,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** KOCW B ARM7/ARM9, 캐시 메모리 1·2, MMU
 
-- [ ] **Day 43 (주 8 / 1일차)** — **학습:** B ‘ARM7TDMI’  
+- **[Day 43 (주 8 / 1일차)](Week08/Day43/README.md)** — **학습:** B ‘ARM7TDMI’  
   **실습:** 파이프라인 fetch/decode/execute 개념  
   **완료 기준:** 3단 파이프라인 그림
-- [ ] **Day 44 (주 8 / 2일차)** — **학습:** B ‘ARM9TDMI’  
+- **[Day 44 (주 8 / 2일차)](Week08/Day44/README.md)** — **학습:** B ‘ARM9TDMI’  
   **실습:** 파이프라인 확장/데이터 hazard  
   **완료 기준:** stall/forwarding 예제
-- [ ] **Day 45 (주 8 / 3일차)** — **학습:** B ‘캐시 메모리 1’  
+- **[Day 45 (주 8 / 3일차)](Week08/Day45/README.md)** — **학습:** B ‘캐시 메모리 1’  
   **실습:** direct mapped cache 인덱스/태그  
   **완료 기준:** 주소 분해 3문제
-- [ ] **Day 46 (주 8 / 4일차)** — **학습:** B ‘캐시 메모리 2’  
+- **[Day 46 (주 8 / 4일차)](Week08/Day46/README.md)** — **학습:** B ‘캐시 메모리 2’  
   **실습:** set associative, replacement, write 정책  
   **완료 기준:** Hit/miss 사례 계산
-- [ ] **Day 47 (주 8 / 5일차)** — **학습:** B ‘Memory management unit’  
+- **[Day 47 (주 8 / 5일차)](Week08/Day47/README.md)** — **학습:** B ‘Memory management unit’  
   **실습:** MMU/MPU 차이 및 보호 기능  
   **완료 기준:** A9 MMU vs M7 MPU 비교표
-- [ ] **Day 48 (주 8 / 6일차)** — **학습:** B ‘ARM 개발 툴 및 디버그 지원’  
+- **[Day 48 (주 8 / 6일차)](Week08/Day48/README.md)** — **학습:** B ‘ARM 개발 툴 및 디버그 지원’  
   **실습:** cache/pipeline/exception 핵심 정리  
   **완료 기준:** 5개 인터뷰 질문 답변
 
@@ -280,22 +282,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** STM32 기존 환경 + ST 공식 자료 한글 번역 + CMSIS
 
-- [ ] **Day 49 (주 9 / 1일차)** — **학습:** STM32CubeIDE/CubeMX 기본·프로젝트 생성 안내  
+- **[Day 49 (주 9 / 1일차)](Week09/Day49/README.md)** — **학습:** STM32CubeIDE/CubeMX 기본·프로젝트 생성 안내  
   **실습:** STM32 프로젝트 빌드·디버깅 환경 설정  
   **완료 기준:** 빌드 및 break 정상
-- [ ] **Day 50 (주 9 / 2일차)** — **학습:** Startup, Reset_Handler, vector table 주제  
+- **[Day 50 (주 9 / 2일차)](Week09/Day50/README.md)** — **학습:** Startup, Reset_Handler, vector table 주제  
   **실습:** startup 파일과 reset 흐름 주석 정리  
   **완료 기준:** Reset→main 진입 설명
-- [ ] **Day 51 (주 9 / 3일차)** — **학습:** Linker script, memory section 설명  
+- **[Day 51 (주 9 / 3일차)](Week09/Day51/README.md)** — **학습:** Linker script, memory section 설명  
   **실습:** map 파일 `.text/.data/.bss` 추적  
   **완료 기준:** Flash/SRAM 위치 표
-- [ ] **Day 52 (주 9 / 4일차)** — **학습:** Memory-mapped I/O, `volatile`, MCU RM GPIO 절  
+- **[Day 52 (주 9 / 4일차)](Week09/Day52/README.md)** — **학습:** Memory-mapped I/O, `volatile`, MCU RM GPIO 절  
   **실습:** HAL GPIO 토글 vs 레지스터 직접 쓰기  
   **완료 기준:** 2가지 방식 파형/LED 확인
-- [ ] **Day 53 (주 9 / 5일차)** — **학습:** NVIC, Interrupt, EXTI 또는 TIM  
+- **[Day 53 (주 9 / 5일차)](Week09/Day53/README.md)** — **학습:** NVIC, Interrupt, EXTI 또는 TIM  
   **실습:** 타이머 ISR과 주기 GPIO 토글  
   **완료 기준:** 100회 인터럽트 카운트
-- [ ] **Day 54 (주 9 / 6일차)** — **학습:** SW 디버깅 도구 복습  
+- **[Day 54 (주 9 / 6일차)](Week09/Day54/README.md)** — **학습:** SW 디버깅 도구 복습  
   **실습:** watch/register/peripheral 뷰와 오류 사례  
   **완료 기준:** 디버깅 노트 1페이지
 
@@ -305,22 +307,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** STM32 공식 자료의 NVIC·UART·DMA 주제 한글 번역
 
-- [ ] **Day 55 (주 10 / 1일차)** — **학습:** NVIC interrupt priority/subpriority  
+- **[Day 55 (주 10 / 1일차)](Week10/Day55/README.md)** — **학습:** NVIC interrupt priority/subpriority  
   **실습:** 두 IRQ 우선순위 실험 계획  
   **완료 기준:** 우선순위 표 작성
-- [ ] **Day 56 (주 10 / 2일차)** — **학습:** ISR와 공유 변수 `volatile` 및 원자성  
+- **[Day 56 (주 10 / 2일차)](Week10/Day56/README.md)** — **학습:** ISR와 공유 변수 `volatile` 및 원자성  
   **실습:** 카운터/플래그 공유 코드 검증  
   **완료 기준:** 경쟁 조건 메모
-- [ ] **Day 57 (주 10 / 3일차)** — **학습:** UART polling  
+- **[Day 57 (주 10 / 3일차)](Week10/Day57/README.md)** — **학습:** UART polling  
   **실습:** `uart_polling.c`, 시간/CPU 대기 기록  
   **완료 기준:** 패킷 100개 송수신
-- [ ] **Day 58 (주 10 / 4일차)** — **학습:** UART interrupt  
+- **[Day 58 (주 10 / 4일차)](Week10/Day58/README.md)** — **학습:** UART interrupt  
   **실습:** `uart_irq.c`, ring buffer 수신  
   **완료 기준:** 패킷 100개 송수신
-- [ ] **Day 59 (주 10 / 5일차)** — **학습:** UART DMA  
+- **[Day 59 (주 10 / 5일차)](Week10/Day59/README.md)** — **학습:** UART DMA  
   **실습:** `uart_dma.c`, 송·수신 실습  
   **완료 기준:** DMA 완료 이벤트 확인
-- [ ] **Day 60 (주 10 / 6일차)** — **학습:** 3방식 비교·복습  
+- **[Day 60 (주 10 / 6일차)](Week10/Day60/README.md)** — **학습:** 3방식 비교·복습  
   **실습:** latency·CPU 관여도·오류율 결과 표  
   **완료 기준:** README 비교 분석 완성
 
@@ -330,22 +332,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** ST STM32H7 Online Training (영문 문서 번역), Cortex-M7 자료
 
-- [ ] **Day 61 (주 11 / 1일차)** — **학습:** STM32H7 시스템 아키텍처·버스 강의  
+- **[Day 61 (주 11 / 1일차)](Week11/Day61/README.md)** — **학습:** STM32H7 시스템 아키텍처·버스 강의  
   **실습:** Cortex-M7/AXI/TCM/내부 SRAM 블록도  
   **완료 기준:** 각 경로 용도 구분
-- [ ] **Day 62 (주 11 / 2일차)** — **학습:** ITCM/DTCM, SRAM memory map  
+- **[Day 62 (주 11 / 2일차)](Week11/Day62/README.md)** — **학습:** ITCM/DTCM, SRAM memory map  
   **실습:** 코드·버퍼 배치 설계, linker sections 검토  
   **완료 기준:** 메모리별 접근 제약 설명
-- [ ] **Day 63 (주 11 / 3일차)** — **학습:** I-Cache/D-Cache 관련 ST 교육  
+- **[Day 63 (주 11 / 3일차)](Week11/Day63/README.md)** — **학습:** I-Cache/D-Cache 관련 ST 교육  
   **실습:** 반복 연산 Cache ON/OFF 벤치마크  
   **완료 기준:** DWT cycle 값 기록
-- [ ] **Day 64 (주 11 / 4일차)** — **학습:** DMA와 D-Cache coherency 문서  
+- **[Day 64 (주 11 / 4일차)](Week11/Day64/README.md)** — **학습:** DMA와 D-Cache coherency 문서  
   **실습:** cache clean/invalidate 실습 또는 사례 분석  
   **완료 기준:** 오류/해결 절차 기록
-- [ ] **Day 65 (주 11 / 5일차)** — **학습:** MPU region attributes 주제  
+- **[Day 65 (주 11 / 5일차)](Week11/Day65/README.md)** — **학습:** MPU region attributes 주제  
   **실습:** Non-cacheable DMA buffer 구성  
   **완료 기준:** region 속성/정렬 정리
-- [ ] **Day 66 (주 11 / 6일차)** — **학습:** M7 실습 종합  
+- **[Day 66 (주 11 / 6일차)](Week11/Day66/README.md)** — **학습:** M7 실습 종합  
   **실습:** cache/TCM/DMA 측정 보고서  
   **완료 기준:** 성능 비교 그래프·결론
 
@@ -355,22 +357,22 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 **사용 자료:** 1~11주 자료 복습 / Zybo Cortex-A9 + FPGA PL
 
-- [ ] **Day 67 (주 12 / 1일차)** — **학습:** 전체 회로/인터페이스 설계  
+- **[Day 67 (주 12 / 1일차)](Week12/Day67/README.md)** — **학습:** 전체 회로/인터페이스 설계  
   **실습:** AXI4-Lite register map, FSM, testplan  
   **완료 기준:** 블록도+주소맵 작성
-- [ ] **Day 68 (주 12 / 2일차)** — **학습:** Arithmetic Core RTL  
+- **[Day 68 (주 12 / 2일차)](Week12/Day68/README.md)** — **학습:** Arithmetic Core RTL  
   **실습:** `mac_core.sv` 또는 ALU + start/done  
   **완료 기준:** 단독 TB PASS
-- [ ] **Day 69 (주 12 / 3일차)** — **학습:** AXI4-Lite Wrapper 통합  
+- **[Day 69 (주 12 / 3일차)](Week12/Day69/README.md)** — **학습:** AXI4-Lite Wrapper 통합  
   **실습:** `axi_lite_accel.sv`와 상태 레지스터  
   **완료 기준:** read/write/interrupt 옵션 검증
-- [ ] **Day 70 (주 12 / 4일차)** — **학습:** SystemVerilog 검증  
+- **[Day 70 (주 12 / 4일차)](Week12/Day70/README.md)** — **학습:** SystemVerilog 검증  
   **실습:** 랜덤 stall, reset, back-to-back test  
   **완료 기준:** 자동 PASS + 커버리지 목록
-- [ ] **Day 71 (주 12 / 5일차)** — **학습:** Zybo PS/PL 통합  
+- **[Day 71 (주 12 / 5일차)](Week12/Day71/README.md)** — **학습:** Zybo PS/PL 통합  
   **실습:** Zynq PS bare-metal C로 start/status/result  
   **완료 기준:** UART 결과 로그/사진
-- [ ] **Day 72 (주 12 / 6일차)** — **학습:** 리포트/포트폴리오 정리  
+- **[Day 72 (주 12 / 6일차)](Week12/Day72/README.md)** — **학습:** 리포트/포트폴리오 정리  
   **실습:** timing/utilization 보고서, 구조·이슈·해결 요약  
   **완료 기준:** 최종 README + GitHub push
 
