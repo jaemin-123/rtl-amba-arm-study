@@ -93,7 +93,7 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 - [x] **Day 05 (주 1 / 5일차)** — **학습:** A 행위수준 모델링 if/case 부분 / CH5  
   **실습:** 비동기 Set/Reset DFF, Priority Encoder, Shift-Add Multiplier, Bit Counter 및 SV 비교  
   **완료 기준:** 조건문·반복문 실습 및 Verilog/SV 비교 결과 기록
-- [ ] **Day 06 (주 1 / 6일차)** — **학습:** CH10 테스트벤치·복습  
+- [x] **Day 06 (주 1 / 6일차)** — **학습:** CH10 테스트벤치·복습  
   **실습:** 6개 연산 ALU(Verilog/SV), Directed 8 + Random 100 자동 비교, 합성 리포트 저장  
   **완료 기준:** PASS와 래치 없음 확인
 
