@@ -111,8 +111,8 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
   **실습:** 래치/DFF, q/q_bar, 할당 방식·순서 비교 및 Verilog/SV 검증  
   **진행 관리:** 상세 README 맨 위 체크리스트에서만 기록. 동기/비동기 리셋 본 실습은 Day08.
 - **[Day 08 (주 2 / 2일차)](Week02/Day08/README.md)** — **학습:** A 순차회로 모델링 (2) / CH11 reset  
-  **실습:** `counter.v` 동기/비동기 reset 구현  
-  **완료 기준:** reset 시퀀스 통과
+  **실습:** 동기/비동기 리셋 DFF 비교, 8비트 증가·Enable 카운터 및 Verilog/SV 자동 비교  
+  **완료 기준:** 리셋 적용 시점, Enable 유지·재개, FF→00 순환 검증
 - **[Day 09 (주 2 / 3일차)](Week02/Day09/README.md)** — **학습:** A 순차회로 모델링 (3) / CH11 shift  
   **실습:** `shift_reg.v` 및 enable 제어  
   **완료 기준:** 파형으로 클록별 변화 확인
