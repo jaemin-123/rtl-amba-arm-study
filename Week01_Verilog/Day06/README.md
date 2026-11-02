@@ -3,7 +3,7 @@
 ## 1. 학습 목표
 - [x] Day01~Day05 Verilog 핵심 문법 복습
 - [x] `case` 문을 이용한 8-bit ALU 구현
-- [x] ADD, SUB, AND, OR, XOR 5개 연산 구현
+- [x] ADD, SUB, MUL, AND, OR, XOR 6개 연산 구현
 - [x] 미사용 Opcode에 대한 기본 출력 처리
 - [x] SystemVerilog Testbench의 `task`, `assert` 활용
 - [x] 랜덤 입력 100개 자동 검증
@@ -15,6 +15,17 @@
 - Verilog 연산자, `always @(*)`, `case`, Blocking Assignment
 - SystemVerilog `logic`, `task automatic`, `assert`
 - Vivado RTL Simulation 및 Synthesis
+
+### 강의 찾기 — 차시·제목·자료 번호
+
+> **번호 구분:** 아래 차시는 KOCW 화면의 묶음 번호이고, PDF 번호와 다르다. 예: 자료형은 **5차시 / PDF 04**. 같은 차시에 여러 영상이 있으므로 **차시 + 영상 제목 + PDF 번호**를 함께 확인한다.
+
+- **강의 목록:** [신경욱 교수 HDL설계](https://www.kocw.net/home/search/kemView.do?kemId=1428200)
+- **볼 영상:** 복습: 6차시 연산자, 9차시 행위수준 모델링, 10차시 묶음의 if 조건문·case 문 / 도구: 21차시 묶음의 Vivado RTL 시뮬레이션, 22차시 Vivado 설계 합성
+- **대응 PDF:** 05·09·11·12·26·27
+- **집중할 범위:** 새 문법 강의 전체 수강보다 ALU·TB 실습 중심. SV enum/function/task/assert는 README 추가 실습
+- **수강 안내:** 위 범위는 해당 실습에 맞춘 안내이며 수강 완료 표시가 아니다.
+
 
 ## 3. 핵심 개념
 
@@ -34,6 +45,8 @@ ALU는 입력 데이터에 대해 산술 및 논리 연산을 수행하는 조�
 ### 3.3 자동 검증
 - Testbench에서 입력 및 예상 결과 생성
 - DUT 출력과 Expected Value 비교
+- **Expected Value(예상 정답값):** 입력과 연산 명세로 미리 계산한 값. 예를 들어 ADD에서 a=255, b=1이면 expected=256(16'h0100)이다.
+- `expected = golden_alu(...)`가 정답값을 계산하고, `assert (result_sv === expected)`가 실제 ALU 출력과 비교한다. Verilog/SV 출력끼리 비교하는 것과 별도의 검사다.
 - `task automatic`으로 반복 검증 코드 재사용
 - `assert`로 PASS/FAIL 판정
 
@@ -46,16 +59,17 @@ ALU는 입력 데이터에 대해 산술 및 논리 연산을 수행하는 조�
 
 ### 4.1 8-bit ALU 구현
 - **RTL:** `rtl/alu8.v`
-- **목표:** 5개 연산과 기본 출력 구현
+- **목표:** 6개 연산과 기본 출력 구현
 
 | Opcode | 연산 |
 |---|---|
-| 000 | ADD |
-| 001 | SUB |
-| 010 | AND |
-| 011 | OR |
-| 100 | XOR |
-| 101~111 | 0 출력 |
+| 001 | ADD |
+| 010 | SUB |
+| 011 | MUL |
+| 100 | AND |
+| 101 | OR |
+| 110 | XOR |
+| 000, 111 | 0 출력 |
 
 ### 4.2 SystemVerilog Testbench 및 자동 검증
 
@@ -227,11 +241,13 @@ Random Test (100개)
 - [x] ADD/SUB/MUL/AND/OR/XOR 6개 연산 검증
 - [x] 미사용 Opcode `000`, `111` 검증
 - [x] Verilog와 SystemVerilog 출력 비교
-- [ ] Expected Value 비교
+- [x] Expected Value(예상 정답값) 비교
 - [x] 랜덤 테스트 100개 실행
 - [x] 전체 108개 테스트 PASS 확인
 
-**예상 최종 로그**
+**최종 로그 기록 — 사용자 확인: 108개 PASS**
+
+[SV 파형·PASS 로그 이미지](images/alu8_sv.md). 저장소 TB의 `check_alu()`에는 `result_sv === expected` 비교가 있고, 비교 통과 후 `pass_count`를 증가시킨다. 이 기록은 사용자가 올린 실행 결과에 근거하며 이번 문서 수정 과정에서 재실행한 결과는 아니다.
 
 ```text
 ALL TESTS PASSED: 108
@@ -260,7 +276,7 @@ ALL TESTS PASSED: 108
 - `case`, 산술 및 비트 연산자 활용
 
 ### SystemVerilog
-- `tb_alu8.sv` 구현
+- `tb_alu8_sv.sv` 구현
 - `logic`, `task`, `assert` 학습
 
 ### Python
