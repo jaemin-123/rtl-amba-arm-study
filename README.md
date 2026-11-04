@@ -25,12 +25,15 @@
 - **B — 이용환 교수 「SoC 구조 및 설계」** (무료, KOCW): https://www.kocw.net/home/search/kemView.do?kemId=1352183
 - **C — 한태희 교수 「SOC구조」** (무료, KOCW): https://www.kocw.net/home/search/kemView.do?kemId=1347233
 - **D — 설계독학맛비 「실전 Verilog HDL Season 2 (AMBA AXI4 완전정복)」** (유료, 인프런/선택): https://www.inflearn.com/course/설계독학맛비-실전-verilog-hdl-part2
-- **책 — 신경욱 《Verilog HDL 설계》** (한글, 한빛아카데미): https://www.yes24.com/product/goods/119775568
+- **주교재 — Sarah Harris·David Harris 《디지털 논리설계와 컴퓨터 구조 RISC-V Edition》** (홍릉, 한국어판, 보유): https://www.kobic.net/book/bookInfo/view.do?isbn=9791156001775
+- **보조 교재 — 《디지털 논리회로》(4판), 《Digital 회로설계 실무》** (보유): 조합·순차논리 개념 복습용. 정확한 장·절은 각 책 목차 확인 후 사용
+- **ARM/임베디드 단계 보조 — 《STM32CubeIDE를 이용한 STM32 따라하기》, 《고성능 임베디드 시스템 설계》** (보유): 후반부 실습에서 필요할 때 참고
+- **교재 적용 범위:** Harris RISC-V Edition의 1~5장과 부록 A를 디지털 논리·HDL 실습에 사용. 6~8장은 **RISC-V** 프로세서/메모리 설명이므로 Week07 이후의 **ARM 명령어·Cortex-M7** 학습 자료와 혼동하지 않는다.
 - **Arm AMBA 사양** (영문 원문, 번역 보조): https://developer.arm.com/Architectures/AMBA
 - **ST STM32 교육** (영문 공식 교육, 번역 보조): https://www.st.com/content/st_com/en/support/learning/stm32-education/stm32-online-training.html
 - **ST STM32H7 교육** (영문 공식 교육, 번역 보조): https://www.st.com/content/st_com/en/support/learning/stm32-education/stm32-online-training/stm32h7-online-training.html
 
-> **수강 번호 주의:** KOCW의 문서/영상 혼합 차시와 웹 화면 표기가 달라질 수 있어 **강의 제목/주제**를 우선 표시했어. D의 4~7강은 공개 목차에 나온 번호이고, 다른 섹션은 이름으로 찾도록 작성했어. 교재 CH는 판본별 목차를 확인하고 같은 주제의 장으로 조정하면 돼. 유료 D를 결제하지 않아도 진행 가능하도록 무료 대체 실습을 포함했어.
+> **수강 번호 주의:** KOCW의 문서/영상 혼합 차시와 웹 화면 표기가 달라질 수 있어 **강의 제목/주제**를 우선 표시했어. D의 4~7강은 공개 목차에 나온 번호이고, 다른 섹션은 이름으로 찾도록 작성했어. 아래 교재 장·절 표기는 《디지털 논리설계와 컴퓨터 구조 RISC-V Edition》 한국어판 목차를 기준으로 한다. 교재에서 직접 다루지 않는 UART·FIFO·task/function·Vivado 도구별 실습은 강의와 별도 실습으로 보완한다. 유료 D를 결제하지 않아도 진행 가능하도록 무료 대체 실습을 포함했어.
 
 > **하드웨어 주의:** 6·12주차는 **Zybo의 Cortex-A9**을 이용한 ARM C ↔ FPGA RTL 통합이고, 11주차는 **STM32H7의 Cortex-M7** 별도 실습이야. STM32H7 보드가 없으면 11주차는 자료/예제 분석으로 먼저 진행하고 측정 실습은 보류해.
 
@@ -77,27 +80,27 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 ### Week 01 — Verilog 기초 / 조합논리
 
-**사용 자료:** KOCW A 및 《Verilog HDL 설계》 CH1·2·4·5·10
+**사용 자료:** KOCW A 및 《디지털 논리설계와 컴퓨터 구조 RISC-V Edition》 2.8·4.2~4.5·4.7·4.9·5.2절
 - Day01~Day06의 상세 실습은 `Week01_Verilog/Day.../README.md`를 기준으로 한다.
 - Verilog/SV를 중심으로 진행하고 Python은 간단한 모델·비교에 필요한 날만 병행한다. C 본격 학습은 ARM Software 단계에 배치한다.
 - Day06의 108개 PASS는 사용자 실행 기록으로 확인했으며, 전체 완료 체크는 합성·Latch 확인까지 마친 뒤 변경한다.
 
-- **[Day 01 (주 1 / 1일차)](Week01_Verilog/Day01_Basic_Combinational/README.md)** — **학습:** A 소개·개요 1~2 차시 / 책 CH1  
+- **[Day 01 (주 1 / 1일차)](Week01_Verilog/Day01_Basic_Combinational/README.md)** — **학습:** A 소개·개요 1~2 차시 / 책 2.8·4.2절(MUX·조합논리)  
   **실습:** Vivado 프로젝트 생성, `mux2.v` 작성  
   **완료 기준:** MUX 0/1 선택 파형 저장
-- **[Day 02 (주 1 / 2일차)](Week01_Verilog/Day02/README.md)** — **학습:** A 자료형 강의 / CH2 자료형  
+- **[Day 02 (주 1 / 2일차)](Week01_Verilog/Day02/README.md)** — **학습:** A 자료형 강의 / 책 4.7절(자료형)  
   **실습:** `wire/reg/logic`와 벡터 폭 예제 `types.v`  
   **완료 기준:** 비트폭 8/16과 signed 차이 기록
-- **[Day 03 (주 1 / 3일차)](Week01_Verilog/Day03_Operators/README.md)** — **학습:** A 연산자 강의 / CH2 연산자  
+- **[Day 03 (주 1 / 3일차)](Week01_Verilog/Day03_Operators/README.md)** — **학습:** A 연산자 강의 / 책 4.2·4.5·5.2절(연산자·산술 회로)  
   **실습:** `operators.v` 산술·논리·비트 연산, 8비트 overflow 시험  
   **완료 기준:** 5종 이상의 연산 결과 비교
-- **[Day 04 (주 1 / 4일차)](Week01_Verilog/Day04_Modeling/README.md)** — **학습:** A 조합회로 모델링의 assign/always 부분 / CH4  
+- **[Day 04 (주 1 / 4일차)](Week01_Verilog/Day04_Modeling/README.md)** — **학습:** A 조합회로 모델링의 assign/always 부분 / 책 4.2·4.3절(조합·구조적 모델링)  
   **실습:** Gate Primitive 가산기, assign/always MUX2 비교, Inertial Delay, Blocking/Nonblocking 비교  
   **완료 기준:** 가산기·MUX 출력 비교와 지연·할당문 파형 분석
-- **[Day 05 (주 1 / 5일차)](Week01_Verilog/Day05/README.md)** — **학습:** A 행위수준 모델링 if/case 부분 / CH5  
+- **[Day 05 (주 1 / 5일차)](Week01_Verilog/Day05/README.md)** — **학습:** A 행위수준 모델링 if/case 부분 / 책 4.4·4.5·5.2절(순차·조합·산술 회로)  
   **실습:** 비동기 Set/Reset DFF, Priority Encoder, Shift-Add Multiplier, Bit Counter 및 SV 비교  
   **완료 기준:** 조건문·반복문 실습 및 Verilog/SV 비교 결과 기록
-- **[Day 06 (주 1 / 6일차)](Week01_Verilog/Day06/README.md)** — **학습:** CH10 테스트벤치·복습  
+- **[Day 06 (주 1 / 6일차)](Week01_Verilog/Day06/README.md)** — **학습:** 책 4.9절(테스트벤치)·5.2절(산술 회로) 복습  
   **실습:** 6개 연산 ALU(Verilog/SV), Directed 8 + Random 100 자동 비교, 합성 리포트 저장  
   **완료 기준:** PASS와 래치 없음 확인
 
@@ -105,24 +108,24 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 ### Week 02 — 순차논리 / FSM / UART
 
-**사용 자료:** KOCW A 순차회로 모델링 1~3 및 책 CH11·13
+**사용 자료:** KOCW A 순차회로 모델링 1~3 및 Harris 교재 3.2~3.5·4.4·4.6·5.4절, 부록 A(구현 참고)
 
 - **[Day 07 (주 2 / 1일차)](Week02/Day07/README.md)** — **학습:** A 15·16차시 순차회로 모델링-(1)·(2), PDF 19·20  
   **실습:** 래치/DFF, q/q_bar, 할당 방식·순서 비교 및 Verilog/SV 검증  
   **진행 관리:** 상세 README 맨 위 체크리스트에서만 기록. 동기/비동기 리셋 본 실습은 Day08.
-- **[Day 08 (주 2 / 2일차)](Week02/Day08/README.md)** — **학습:** A 순차회로 모델링 (2) / CH11 reset  
+- **[Day 08 (주 2 / 2일차)](Week02/Day08/README.md)** — **학습:** A 순차회로 모델링 (2) / 책 3.2·3.3·4.4절(플립플롭·리셋)  
   **실습:** 동기/비동기 리셋 DFF 비교, 8비트 증가·Enable 카운터 및 Verilog/SV 자동 비교  
   **완료 기준:** 리셋 적용 시점, Enable 유지·재개, FF→00 순환 검증
-- **[Day 09 (주 2 / 3일차)](Week02/Day09/README.md)** — **학습:** A 순차회로 모델링 (3) / CH11 shift  
+- **[Day 09 (주 2 / 3일차)](Week02/Day09/README.md)** — **학습:** A 순차회로 모델링 (3) / 책 5.4절(순차 빌딩 블록·시프트 레지스터)  
   **실습:** `shift_reg.v` 및 enable 제어  
   **완료 기준:** 파형으로 클록별 변화 확인
-- **[Day 10 (주 2 / 4일차)](Week02/Day10/README.md)** — **학습:** CH11 FSM / 강의 FSM 관련 차시  
+- **[Day 10 (주 2 / 4일차)](Week02/Day10/README.md)** — **학습:** 책 3.4·4.6절(FSM) / 강의 FSM 관련 차시  
   **실습:** UART RX IDLE/START/DATA/STOP 상태도  
   **완료 기준:** 상태전이표 README 첨부
-- **[Day 11 (주 2 / 5일차)](Week02/Day11/README.md)** — **학습:** CH11 UART 순차회로 복습  
+- **[Day 11 (주 2 / 5일차)](Week02/Day11/README.md)** — **학습:** 책 3.4·4.6·5.4절(FSM·순차회로) 복습 / UART는 자체 실습  
   **실습:** `uart_rx.v` 8N1 RX 구현  
   **완료 기준:** 1바이트 수신 성공
-- **[Day 12 (주 2 / 6일차)](Week02/Day12/README.md)** — **학습:** CH13 Vivado 합성·타이밍 관련 차시  
+- **[Day 12 (주 2 / 6일차)](Week02/Day12/README.md)** — **학습:** 책 3.5절(순차 논리 타이밍)·부록 A(디지털 시스템 구현) / Vivado 합성·타이밍 관련 차시  
   **실습:** `tb_uart_rx.v` 오동작/리셋 테스트 및 합성  
   **완료 기준:** 정상/오류 case 결과 기록
 
@@ -130,15 +133,15 @@ APB/AXI 세부 설계, SV 검증, C/STM32 실습은 아래 각 Day의 사양·�
 
 ### Week 03 — FIFO / 검증 자동화
 
-**사용 자료:** KOCW A 구조 모델링·시뮬레이션 관련 차시, 책 CH6·7·9
+**사용 자료:** KOCW A 구조 모델링·시뮬레이션 관련 차시, Harris 교재 4.8·4.9·5.4·5.5절(태스크·함수·FIFO 세부 구현은 별도 실습)
 
-- **[Day 13 (주 3 / 1일차)](Week03/Day13/README.md)** — **학습:** CH6 모듈/parameter  
+- **[Day 13 (주 3 / 1일차)](Week03/Day13/README.md)** — **학습:** 책 4.3·4.8절(구조적 모델링·매개변수화 모듈)  
   **실습:** 동기 FIFO 포트·parameter 정의  
   **완료 기준:** 폭/깊이 변경 가능
-- **[Day 14 (주 3 / 2일차)](Week03/Day14/README.md)** — **학습:** CH7 task/function  
+- **[Day 14 (주 3 / 2일차)](Week03/Day14/README.md)** — **학습:** 책 4.9절(테스트벤치) / task·function 문법은 별도 실습 자료  
   **실습:** `tb_fifo.sv` push/pop 태스크 작성  
   **완료 기준:** 태스크로 8개 데이터 기록
-- **[Day 15 (주 3 / 3일차)](Week03/Day15/README.md)** — **학습:** CH9 시스템 태스크·검증 코드  
+- **[Day 15 (주 3 / 3일차)](Week03/Day15/README.md)** — **학습:** 책 4.9절(테스트벤치) / 시스템 태스크·scoreboard는 별도 실습 자료  
   **실습:** `$fatal`/`$display`와 scoreboard  
   **완료 기준:** 의도적 오류 감지
 - **[Day 16 (주 3 / 4일차)](Week03/Day16/README.md)** — **학습:** FIFO pointer/full/empty 자체 노트  
