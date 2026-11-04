@@ -21,7 +21,7 @@
 ## 2. 학습 자료
 
 - [신경욱 교수 KOCW HDL 설계](https://www.kocw.net/home/search/kemView.do?kemId=1428200) — 순차회로 모델링 관련 내용 복습
-- 교재 CH11 — 순차회로 및 FSM 관련 내용
+- **『디지털 논리설계와 컴퓨터 구조 RISC-V Edition』(홍릉)** — **3.4 유한 상태 머신(FSM 개념·상태도·Moore/Mealy)**, **4.6 유한 상태 기계(HDL 구현)**를 필수 학습. 3.3 동기식 논리 설계 복습, 3.5 순차 논리의 타이밍은 심화 학습.
 - [Day07: DFF 및 할당 방식](../Day07/README.md)
 - [Day08: 리셋과 카운터](../Day08/README.md)
 - [Day09: 8비트 시프트 레지스터](../Day09/README.md)
