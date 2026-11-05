@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module tb_UART_rx_fsm_sv;
 
     // 두 DUT에 공통으로 넣을 입력
