@@ -2,7 +2,7 @@
 
 > **학습 주제:** FSM(Finite State Machine)과 UART 8N1 수신기 상태 설계  
 > **오늘의 목표:** UART 수신 과정을 `IDLE → START → DATA → STOP` 상태로 구분하고, 각 상태의 동작과 전이 조건을 설명한다.  
-> **진행 상태:** UART FSM 파형 확인 및 SV 자동 검사 12회 PASS. 교통 신호등 기본 RTL은 작성·업로드했다고 사용자 확인했으며 시뮬레이션 전이다.
+> 완료 여부는 아래 체크리스트 한 곳에서 관리한다.
 
 ## 1. 오늘의 체크리스트
 
@@ -16,7 +16,10 @@
 - [ ] (선택) FSM 상태 부호화(Binary/One-Hot/One-Cold)와 Area·Timing Trade-off 이해
 - [ ] (선택) 교통 신호등 FSM의 S1/S3 5클록 대기 카운터 원리 이해
 - [ ] (선택) 교통 신호등 FSM 5클록 대기 TB/파형 검증
-- [x] (선택) FSM 상태 전이 RTL/TB 작성 및 시뮬레이션
+- [x] UART FSM Verilog/SV RTL·TB 작성 및 파형 확인
+- [x] enum 기대 상태 배열·계층 참조·assert로 상태 검사 12회 PASS
+- [x] 교통 신호등 기본 RTL 작성·업로드 (사용자 확인)
+- [ ] (선택) 교통 신호등 기본 RTL 시뮬레이션
 - [x] 실제 학습 결과·오류·개선 사항 기록
 
 **완료 기준:** 상태도와 상태전이표를 작성하고, 정상 Start Bit와 잘못된 Start Bit의 전이 조건을 설명할 수 있다. 실제 8비트 UART 수신기 구현은 Day11에 진행한다.
@@ -351,33 +354,26 @@ Verilog의 `localparam`/`reg`와 SV의 `typedef enum` 표현을 함께 비교한
 
 ## 7. 검증 결과
 
-### 확인한 수행 내역
+| 시각 | 입력 조건 | 확인한 상태 |
+|---|---|---|
+| 10ns | rst_n=0 | IDLE |
+| 50ns | rx=0 | START |
+| 70ns | half_bit_done=1, rx=1 | IDLE |
+| 110ns | rx=0 | START |
+| 130ns | half_bit_done=1, rx=0 | DATA |
+| 150ns | bit_done=1, bit_index=6 | DATA 유지 |
+| 170ns | bit_done=0, bit_index=7 | DATA 유지 |
+| 190ns | bit_done=1, bit_index=7 | STOP |
+| 210ns | bit_done=0 | STOP 유지 |
+| 230ns | bit_done=1 | IDLE |
 
-- UART FSM의 Verilog/SV 상태 및 enum 기대 상태 배열을 비교해 12회 PASS. 검사는 11ns부터 231ns까지 상승 에지 후 #1에 실행했다.
-- 50ns START → 70ns IDLE로 잘못된 Start 복귀를 확인했다.
-- 정상 경로는 110ns START → 130ns DATA → 190ns STOP → 230ns IDLE이었다.
-- 150ns에는 bit_index=6으로 DATA 유지, 170ns에는 bit_done=0으로 DATA 유지, 210ns에는 STOP 유지를 확인했다.
-- 교통 신호등 기본 RTL은 코드 작성·업로드까지 사용자 확인. 시뮬레이션은 미실행이다. 5클록 카운터 확장은 아이디어 검토 단계다.
+검사 블록은 각 상승 에지에서 1ns 기다린 뒤 Verilog/SV 상태와 기대 상태를 비교했다.
 
 ```text
 PASS: 12 state checks
 ```
 
-UART 검사의 타이머 완료 신호와 bit_index는 TB가 직접 입력했다. 실제 UART 비트 타이밍과 데이터 저장은 Day11에서 구현한다.
-
-
-| 검증 항목 | 기대 결과 | 실제 결과 |
-|---|---|---|
-| UART 8N1 프레임 | Start 1비트, Data 8비트, Stop 1비트 | 미확인 |
-| FSM 상태도 | 4개 상태 및 전이 조건 정리 | 미확인 |
-| 상태전이표 | 정상·비정상 Start 구분 | 미확인 |
-| FSM 시뮬레이션 (선택) | 정상 상태 순환, 잘못된 Start 복귀 | 파형 확인 및 V/SV 기대 상태 검사 12회 PASS |
-| Vivado 파형 (선택) | 상태와 전이 조건 일치 | 대화에 공유한 파형으로 확인 |
-| 교통 신호등 S1/S3 5클록 대기 (선택) | 각 상태에서 5클록 유지 후 전이 | 미실행 |
-| FSM 인코딩 PPA 비교 (선택) | FF/Area/Timing 차이 분석 | 미실행 |
-
-**파형/상태도 이미지:** 실습 후 추가  
-**PASS/FAIL 로그:** `PASS: 12 state checks`
+타이머 완료 신호와 bit_index는 TB가 직접 입력했다. 실제 UART 비트 타이밍과 데이터 저장은 Day11에서 구현한다.
 
 ## 8. 에러 및 해결
 
@@ -402,4 +398,4 @@ UART 검사의 타이머 완료 신호와 bit_index는 TB가 직접 입력했다
 
 Day10의 FSM을 바탕으로 Baud Rate 카운터, 데이터 저장 레지스터, Stop Bit 검사, `rx_done` 신호를 연결하여 실제 UART 수신기를 구현한다.
 
-> 완료 체크와 검증 결과는 **실제 작성·시뮬레이션한 후에만** 갱신한다.
+
