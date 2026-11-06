@@ -3,7 +3,8 @@
 > **목표:** Verilog RTL 설계 → AMBA APB/AXI 인터페이스 → ARM Architecture/Software → Cortex-M7 → ARM(PS)+FPGA(PL) 통합  
 > **학습량:** 12주 × 주 6일 = **72일**, 하루 **약 3시간** (강의 50분 + 참고자료 30분 + 실습 80분 + 정리 20분)  
 > **사용 방법:** Day01~Day72의 날짜를 누르면 해당 Day README로 이동한다. 세부 완료 체크는 각 Day README에서만 관리한다.
-> **환경:** Vivado 2022.2, XSIM, Zybo Z7-20(ARM Cortex-A9), 기존 STM32 개발환경. **Cortex-M7 보드는 STM32H7 별도 필요**  
+> **환경:** Vivado 2022.2 사용 중 → Vivado 2025.x 설치·전환 예정(다크 모드 사용 목적, 세부 버전 미정), XSIM, Zybo Z7-20(ARM Cortex-A9), 기존 STM32 개발환경. **Cortex-M7 보드는 STM32H7 별도 필요**  
+> 기존 Day별 파형·로그의 도구 버전은 실행 당시 기준으로 기록한다. 새 버전 설치 후에는 정확한 버전과 기존 RTL/TB 재실행 결과를 해당 Day에 추가한다.
 > **언어:** 한국어 강의·한글 학습 노트 중심. APB/AXI 사양 및 Cortex-M7의 일부 공식 자료는 필요한 절만 번역해 사용
 
 ## 📍 진행 현황
