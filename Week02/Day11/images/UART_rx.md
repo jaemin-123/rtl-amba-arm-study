@@ -9,3 +9,5 @@
 ## 카운터 수정 후
 <img width="1214" height="192" alt="image" src="https://github.com/user-attachments/assets/02d564dd-7acc-448f-84a8-514f64f15e70" />
 <img width="1186" height="506" alt="image" src="https://github.com/user-attachments/assets/9a405848-fb45-475a-bbe9-dd82d909c474" />
+<img width="560" height="235" alt="image" src="https://github.com/user-attachments/assets/8465c00a-9354-4b54-a4e5-3201c5aa3d92" />
+<img width="557" height="230" alt="image" src="https://github.com/user-attachments/assets/d0d713cf-2bf2-49c9-bcb4-ec2ab0846441" />
