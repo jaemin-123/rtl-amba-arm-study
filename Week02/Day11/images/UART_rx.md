@@ -11,3 +11,6 @@
 <img width="1186" height="506" alt="image" src="https://github.com/user-attachments/assets/9a405848-fb45-475a-bbe9-dd82d909c474" />
 <img width="560" height="235" alt="image" src="https://github.com/user-attachments/assets/8465c00a-9354-4b54-a4e5-3201c5aa3d92" />
 <img width="557" height="230" alt="image" src="https://github.com/user-attachments/assets/d0d713cf-2bf2-49c9-bcb4-ec2ab0846441" />
+
+## 짧은 START
+<img width="1055" height="407" alt="image" src="https://github.com/user-attachments/assets/8d9bc99e-fa80-4331-afe3-30a296ed68c2" />
