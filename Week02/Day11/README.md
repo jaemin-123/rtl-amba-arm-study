@@ -5,17 +5,19 @@
 
 ## 1. 오늘의 체크리스트
 
-- [ ] Day10 FSM을 복사해 Day11 모듈 생성
-- [ ] 외부 rx 입력의 2단 동기화 구현
-- [ ] 반 비트·한 비트 카운터와 상태 전이 연결
-- [ ] LSB-first 데이터 8비트 저장
-- [ ] 정상 Stop Bit에서 rx_data 갱신 및 rx_done 1클록 펄스 생성
-- [ ] Verilog TB에서 1바이트 수신 파형 확인
-- [ ] SV TB에서 수신값·완료 펄스 자동 검사
+- [x] Day10 FSM을 복사해 Day11 모듈 생성
+- [x] 외부 rx 입력의 2단 동기화 구현
+- [x] 반 비트·한 비트 카운터와 상태 전이 연결
+- [x] LSB-first 데이터 8비트 저장
+- [x] 정상 Stop Bit에서 rx_data 갱신 및 rx_done 1클록 펄스 생성
+- [x] Verilog TB에서 1바이트 수신 파형 확인
+- [x] SV TB에서 수신값·완료 펄스 자동 검사
 - [ ] 짧은 Start·잘못된 Stop·연속 프레임 시험
-- [ ] 검증 결과와 에러 해결 기록
+- [x] 검증 결과와 에러 해결 기록
 
 **기본 완료 목표**는 시뮬레이션용 8클록/비트 설정에서 정상 1바이트 수신이다. 이후 오류 입력과 연속 프레임을 추가한다.
+
+실습 환경: **Vivado 2025.2 / xsim**, TB 시간 단위 `1ns/1ps`.
 
 ## 2. 공부 자료와 범위
 
@@ -208,8 +210,11 @@ SV RTL은 `logic`, `typedef enum logic [1:0]`, `always_ff`, `always_comb`를 사
 
 ```systemverilog
 initial begin : check_one_frame
-    int done_count = 0;
-    logic previous_done = 0;
+    int done_count;
+    logic previous_done;
+
+    done_count = 0;
+    previous_done = 1'b0;
 
     // 초기 리셋 + 입력 전 대기 + 10비트 프레임 이후까지 검사
     repeat (16 * CLKS_PER_BIT) begin
@@ -276,12 +281,116 @@ C는 ARM 소프트웨어 단계에서 진행한다.
 
 ## 7. 검증 결과
 
-실행 후 입력 바이트, 실제 rx_data, rx_done 시점과 폭, 완료 횟수, 파형·로그를 기록한다.
+### 7.1 정상 A6 수신
+
+Vivado 2025.2에서 Verilog 단독 TB와 V/SV 공통 입력 TB를 실행하고 공유한 파형을 확인했다.
+
+| 항목 | 관찰 결과 |
+|---|---|
+| 입력 payload | `8'hA6` = 166 |
+| 시간순 D0→D7 | 0, 1, 1, 0, 0, 1, 0, 1 |
+| rx_sync | rx를 지연해서 내부 클록에 맞춰 관찰 |
+| bit_index | DATA에서 0~7 순서로 진행 |
+| data_buf | 수신 과정에서 0→2→6→38→166으로 갱신 |
+| rx_data_v / rx_data_sv | 정상 Stop 검사 후 둘 다 A6, 이후 유지 |
+| rx_done_v / rx_done_sv | 같은 시점에 한 클록 폭의 완료 펄스 관찰 |
+| 상태 | IDLE→START→DATA→STOP→IDLE |
+
+파형의 직렬 전송 순서는 D0부터 읽는다. 버스 표기는 D7부터이므로 `1010_0110 = A6`가 된다.
+
+SV TB에는 V/SV 데이터·완료 신호 일치, 완료 시 A6 기대값, 연속 두 클록 완료 금지, 최종 완료 횟수 1회 검사를 넣었다. 공유된 파형에서는 정상 동작을 확인했다. 최종 PASS 콘솔 로그는 별도로 첨부할 예정이다.
+
+짧은 Start·잘못된 Stop·연속 프레임·수신 중 리셋은 아직 실행 결과를 확인하지 않았다.
+
+### 7.2 카운터 조건 정리와 합성 비교
+
+기존의 여러 `else if` 초기화 조건을 하나의 `cnt_clear`로 묶어 RTL Analysis와 합성 자원을 비교했다.
+
+```verilog
+wire cnt_clear;
+
+assign cnt_clear =
+    (state == IDLE) ||
+    (next_state != state) ||
+    ((state == DATA || state == STOP) && bit_done);
+
+always @(posedge clk) begin
+    if (!rst_n)
+        cnt <= 16'd0;
+    else if (cnt_clear)
+        cnt <= 16'd0;
+    else
+        cnt <= cnt + 16'd1;
+end
+```
+
+RTL 그림에서는 카운터 앞의 연속 MUX가 조건 비교·AND·OR와 하나의 MUX로 표현됐다. 하지만 합성 후 자원 수는 수정 전후 동일했다.
+
+| 자원 | 수정 전 | 수정 후 |
+|---|---:|---:|
+| LUT | 25 | 25 |
+| FF | 40 | 40 |
+| IO | 12 | 12 |
+| BUFG | 1 | 1 |
+
+동일한 동작을 다른 문법으로 표현해도 합성 도구가 같은 자원 수로 구현할 수 있다. 이번 변경에서 면적 개선은 확인되지 않았으며, 자원 수만으로 타이밍·전력까지 같다고 판단하지 않는다. 타이밍·전력 개선 측정은 하지 않았다.
 
 ## 8. 에러 및 해결
 
-실제 발생한 문제, 원인, 수정 코드, 변경 전후 결과를 기록한다. 카운터 한 클록 오차와 데이터 비트 순서, D7 저장 시점을 특히 확인한다.
+### 8.1 TB 파라미터 연결 문법
+
+- 문제: 인스턴스 이름 뒤에 `#(...)`를 넣고 `CLKS_PER_BIT = CLKS_PER_BIT`로 작성해 오류 표시 발생.
+- 수정: TB에 상수를 선언하고 모듈 이름 뒤, 인스턴스 이름 앞에서 이름 기반 파라미터 연결을 사용했다.
+
+```systemverilog
+localparam integer CLKS_PER_BIT = 8;
+
+UART_rx #(
+    .CLKS_PER_BIT(CLKS_PER_BIT)
+) U1 (
+    // 포트 연결
+);
+```
+
+TB는 상승 에지에서 동기 리셋을 한 번 이상 수행한 뒤 하강 에지에서 rst_n을 1로 해제한다.
+
+### 8.2 DATA의 begin/end 범위
+
+- 문제: `if (bit_done)` 아래 저장문만 조건에 포함되어 bit_index가 DATA의 매 클록마다 증가할 수 있었다.
+- 수정: 저장과 인덱스 증가를 같은 begin/end로 묶었다.
+
+```verilog
+if (bit_done) begin
+    data_buf[bit_index] <= rx_sync;
+    if (bit_index < 3'd7)
+        bit_index <= bit_index + 3'd1;
+end
+```
+
+bit_index와 data_buf는 조합 상태 전이 블록에서 대입하지 않고, 각각 한 순차 블록에서 관리한다.
+
+### 8.3 SV 블록 지역 변수 초기화 경고
+
+- 메시지: 선언과 동시에 초기화한 변수에 automatic 또는 static 명시가 필요하다는 경고.
+- 수정: `int done_count;`, `logic previous_done;`로 먼저 선언하고, 아래에서 `=`로 초기값을 대입했다.
+- 검사 블록의 수정 예시는 5.3절에 반영했다.
+
+### 8.4 증분 합성 체크포인트 경고
+
+`[Synth 8-6895]`는 이전 DCP가 현재 설계의 incremental synthesis에 적합하지 않아 일반 합성으로 진행한다는 메시지였다.
+
+RTL 오류를 지적하는 메시지는 아니며, 정확한 체크포인트 부적합 원인은 확인하지 않았다. 필요하면 Settings → Synthesis → Incremental Synthesis에서 **Disable incremental compile**을 선택하고 전체 합성을 다시 실행한다. 이 설정 변경으로 경고가 해소됐는지는 별도 확인이 필요하다.
 
 ## 9. 학습 내용 및 다음 보완
 
-Day10의 TB 입력이었던 타이머 완료 조건이 내부 회로에서 어떻게 만들어졌는지 설명해 본다. rx_data 갱신과 rx_done 펄스가 같은 에지에 발생하는지 정리한다.
+- 2단 FF는 송수신 클록 자체를 일치시키는 회로가 아니라 외부 rx를 내부 clk로 받아 메타안정성 전파 가능성을 낮추는 구조다.
+- `parameter integer CLKS_PER_BIT`는 설계 구성 시 결정되는 정수 상수이며, 그 선언 자체가 32비트 저장 레지스터를 만드는 것은 아니다.
+- `repeat (CLKS_PER_BIT) @(negedge clk);`는 한 비트를 필요한 시간 동안 유지하기 위한 대기다.
+- cnt, state, 데이터·출력의 순차 블록과 next_state 조합 블록을 역할별로 나눴다. 같은 레지스터를 여러 블록에서 구동하지 않는다.
+- data_buf는 직렬 비트를 조립하고, rx_data는 완성된 바이트를 유지한다. 이 구조만으로 다음 모듈의 준비 상태를 확인하거나 여러 바이트를 큐에 보관하지는 않는다.
+- SV에서는 logic, enum, always_ff, always_comb를 사용했다. assign으로 구동하는 wire는 그대로 사용할 수 있다.
+- TB의 두 initial은 동시에 시작한다. 입력은 하강 에지에 바꾸고, 검사는 상승 에지 후 #1에서 갱신 결과를 읽는다.
+- previous_done은 이전 검사값이다. 현재 펄스를 검사한 다음 값을 갱신해야 한다.
+- 완료 시 데이터 검사와 최종 완료 횟수 검사를 함께 해야, 완료가 전혀 발생하지 않는 오류도 검출할 수 있다.
+- RTL Analysis의 도형 수와 최종 합성 자원 수는 다를 수 있다. 코드 길이 감소가 곧 하드웨어 면적 감소는 아니다.
+- 다음에는 00/FF/55 패턴과 오류·연속 프레임을 하나씩 추가한다. 카운터 폭 최적화는 기능 검증 후 별도 비교한다.
