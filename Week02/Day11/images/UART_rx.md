@@ -3,6 +3,8 @@
 ## 카운터 수정 전
 <img width="1215" height="203" alt="image" src="https://github.com/user-attachments/assets/ee6f988f-2053-41d7-a16a-b77fde4ce15b" />
 <img width="947" height="316" alt="image" src="https://github.com/user-attachments/assets/8278c227-07fd-4206-ade8-07109183820f" />
+<img width="518" height="235" alt="image" src="https://github.com/user-attachments/assets/3bd8bb6f-9f1e-4d2c-8b56-2c1e0a961dd8" />
+<img width="518" height="234" alt="image" src="https://github.com/user-attachments/assets/9254bf1e-c870-4bca-a086-b693a6de3d3f" />
 
 ## 카운터 수정 후
 <img width="1214" height="192" alt="image" src="https://github.com/user-attachments/assets/02d564dd-7acc-448f-84a8-514f64f15e70" />
