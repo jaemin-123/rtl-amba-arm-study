@@ -9,12 +9,12 @@
 - [x] FSM의 현재 상태, 다음 상태, 상태 전이 개념 이해
 - [x] Moore/Mealy 출력 결정 조건 비교 (개념 복습 포함)
 - [x] Verilog `localparam`과 SystemVerilog `typedef enum` 비교
-- [ ] `always_ff`와 `always_comb`의 역할 구분
-- [ ] UART 8N1 프레임과 LSB-first 전송 순서 이해
-- [ ] UART RX 4개 상태의 상태도 및 상태전이표 작성
+- [x] `always_ff`와 `always_comb`의 역할 구분
+- [x] UART 8N1 프레임과 LSB-first 전송 순서 이해
+- [x] UART RX 4개 상태의 상태도 및 상태전이표 작성
 - [x] Baud Rate 카운터와 비트 중앙 샘플링 개념 이해
-- [ ] (선택) FSM 상태 부호화(Binary/One-Hot/One-Cold)와 Area·Timing Trade-off 이해
-- [ ] (선택) 교통 신호등 FSM의 S1/S3 5클록 대기 카운터 원리 이해
+- [x] (선택) FSM 상태 부호화(Binary/One-Hot/One-Cold)와 Area·Timing Trade-off 이해
+- [x] (선택) 교통 신호등 FSM의 S1/S3 5클록 대기 카운터 원리 이해
 - [ ] (선택) 교통 신호등 FSM 5클록 대기 TB/파형 검증
 - [x] UART FSM Verilog/SV RTL·TB 작성 및 파형 확인
 - [x] enum 기대 상태 배열·계층 참조·assert로 상태 검사 12회 PASS
@@ -384,7 +384,10 @@ PASS: 12 state checks
 
 ## 9. 학습 내용 및 느낀 점
 
-- **새롭게 이해한 개념:** 실습 후 작성
+- **새롭게 이해한 개념:** `always_ff`는 클록 에지에서 현재 상태를 갱신하고, `always_comb`는 현재 상태와 입력으로 다음 상태를 계산한다. UART 8N1은 Start 1비트·Data 8비트·Stop 1비트이며 데이터는 D0부터 전송한다.
+- **상태도 보완:** 직접 그린 상태도에서 START→DATA는 `half_bit_done && !rx`로 수정하고, `!half_bit_done`이면 START 유지 조건을 추가한다. 리셋 화살표는 `rst_n=0`으로 표시한다.
+- **상태 부호화 복습:** 4개 상태의 Binary는 FF 2개, One-Hot/One-Cold는 FF 4개를 사용한다. One-Hot은 판별 논리 단순화로 타이밍에 유리할 수 있으며 실제 PPA는 구현 결과로 확인한다. One-Cold는 한 비트만 0인 부호화이며 negedge와 별개다.
+- **5클록 대기 복습:** S1/S3 진입 시 cnt=0에서 시작한다. 진입 후 네 번째 상승 에지에 cnt=4가 되고, 다섯 번째 에지에 다음 상태로 이동하며 카운터를 초기화한다.
 - **기존에 잘못 알고 있던 부분:** Moore와 Mealy 모두 입력에 따라 다음 상태가 바뀔 수 있다. Moore 출력은 현재 상태에, Mealy 출력은 현재 상태와 입력에 의존한다.
 - **추가로 공부할 내용:**
   - Baud Rate 카운터 및 비트 중앙 샘플링
